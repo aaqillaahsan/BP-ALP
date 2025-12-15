@@ -64,7 +64,7 @@ public class Main {
 
             switch(choice){
                 case "p" -> System.out.println("you want to play letsplay");
-                case "l" -> System.out.println("Loading...");
+                case "l" -> System.out.println("Loading...aa");
                 case "e" -> System.out.println("Thank you for playing. Exiting...");
                 default -> System.out.println("Invalid input");
             }
@@ -73,3 +73,4 @@ public class Main {
 
 
 }
+
