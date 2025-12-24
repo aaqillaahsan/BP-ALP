@@ -44,15 +44,22 @@ public class Main {
 
     public static void main(String[] args) throws Exception { 
         Game game = new Game();
+        String[] validchoice = {"P","E"};
+        boolean valid = false;
         Mainmenu();
         String choice = "";
         do { 
             System.out.printf("Enter your choice: ");
             try {
                 choice = sc.nextLine();
+                for(int i = 0; i < validchoice.length; i++){
+                    if(choice.equalsIgnoreCase(validchoice[i])){
+                        valid = true;
+                    }
+                }
                 if(choice.length() != 1){
                     System.out.println("Invalid input");
-                } else if(!choice.equalsIgnoreCase("p")&&!choice.equalsIgnoreCase("l")&&!choice.equalsIgnoreCase("e")){
+                } else if(!valid){
                     System.out.println("Invalid input");
                 }
             } catch (Exception e) {
