@@ -20,8 +20,8 @@ public class Main {
         System.out.println("=======================================================");
         Mansion();
         System.out.println("=======================================================");
-        String[] list = {"PLAY (P)", "LOAD (L)", "EXIT (E)"};
-        for(int i = 0;i < 7;i++){
+        String[] list = {"PLAY (P)", "EXIT (E)"};
+        for(int i = 0;i < 5;i++){
             for(int j = 0; j < 55; j++){
                 if(j == 0 || j == 54){
                     System.out.print("|");
@@ -43,13 +43,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception { 
+        Game game = new Game();
         Mainmenu();
         String choice = "";
-        boolean valid = true;
         do { 
             System.out.printf("Enter your choice: ");
             try {
-                valid = true;
                 choice = sc.nextLine();
                 if(choice.length() != 1){
                     System.out.println("Invalid input");
@@ -63,8 +62,7 @@ public class Main {
             choice = choice.toLowerCase();
 
             switch(choice){
-                case "p" -> System.out.println("you want to play letsplay");
-                case "l" -> System.out.println("Loading...");
+                case "p" -> game.Start();
                 case "e" -> System.out.println("Thank you for playing. Exiting...");
                 default -> System.out.println("Invalid input");
             }
@@ -73,5 +71,3 @@ public class Main {
 
 
 }
-
-
