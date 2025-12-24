@@ -4,7 +4,8 @@ Players explore a mansion with multiple rooms and NPCs. Rooms (Room class) can s
 
 Required implementation & minimum features: 
 • Use at least 4 classes: Room, Item, NPC, Game (or World), plus Main. 
-• Use ArrayList<Item> in rooms and in the player’s inventory; optional ArrayList<NPC> per room. 
+• Use ArrayList<Item> in rooms and in the player’s inventory; optional ArrayList<NPC> per room.
+
 • Define a fixed set of rooms (at least 6–8) and connections between them. 
 • Implement a command system:
       o Basic commands: GO (move), LOOK, TAKE, DROP, TALK, INVENTORY. 
