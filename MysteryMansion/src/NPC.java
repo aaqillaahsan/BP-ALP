@@ -1,34 +1,46 @@
-public class NPC {
+
+import java.util.ArrayList;
+
+public abstract class NPC {
     private String name;
-    private String desciption;
-    private String dialogue;
-    private DialogueClue dialogueClue;
     private boolean isCulprit;
 
-    public NPC (String name, String dialogue, boolean isCulprit, DialogueClue dialogueClue){
+    protected ArrayList<NightDialogue> nightDialogue = new ArrayList<>();
+    protected ArrayList<ConditionClue> conditionClues = new ArrayList<>();
+    protected String description;
+
+    public NPC (String name, boolean isCulprit){
         this.name = name;
-        this.dialogue = dialogue;
         this.isCulprit = isCulprit;
-        this.dialogueClue = dialogueClue;
     }
 
     public String getName(){
         return name;
     }
     
-    public String Talk(){
-        return dialogue;
+    public String Talk(int night) {
+        return nightDialogue.get(night -1).next();
     }
 
-    public boolean getCulprit(){
-        return isCulprit;
-    }
+    public DialogClue giveClue(int night, Inventory inventory){
+        int dialogIndex = nightDialogue.get(night - 1).getIndex();
+        for(ConditionClue i: conditionClues){
+            if(i.canGive(night, dialogIndex, inventory)){
+                return i.giveClue();
+            }
+        }
 
-    public DialogueClue giveClue(){
-        return dialogueClue;
+        return null;
     }
 
     public String getDesc(){
-        return desciption;
+        return description;
+    }
+
+    public void setDesc(){
+    }
+
+    public boolean isCulprit(){
+        return isCulprit;
     }
 }

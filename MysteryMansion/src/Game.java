@@ -32,7 +32,7 @@ public class Game {
         //Add connections
         mainHall.connectRoom(livingRoom);
         mainHall.connectRoom(diningRoom);
-        mainHall.connectRoom(library);
+        mainHall.connectRoom(bedroom);
         mainHall.connectRoom(basement);
 
         livingRoom.connectRoom(mainHall);
@@ -121,16 +121,17 @@ public class Game {
         Room current = player.getCurrentRoom();
         for(NPC i: current.getNPCS()){
             if(i.getName().equalsIgnoreCase(name)){
+                DialogClue clue = i.giveClue(night, player.getInventory());
+                if(clue != null){
+                    System.out.printf("\" %s \"", clue.getText());
+                    player.getJournal().addClue(clue);
+                    return;
+                }
+
                 System.out.println(i.getName() + ": ");
-                System.out.printf("\" %s \"\n", i.Talk());
-            }
-
-            DialogueClue clue = i.giveClue();
-            if(clue != null){
-                player.getJournal().addClue(clue);
-            }
-
-            return;
+                System.out.printf("\" %s \"",i.Talk(night));
+                return;
+            }    
         }
 
         System.out.println("No such person in this room. . .");
@@ -160,32 +161,41 @@ public class Game {
             for(Room i: rooms){
                 if(command.substring(3).equalsIgnoreCase(i.getName())){
                     goRoom(command.substring(3));
+                    System.out.println();
                     return;
                 }
              }
             System.out.println("Unknown room");
+            System.out.println();
 
         } else if(command.equalsIgnoreCase("LOOK")){
             System.out.println("You looked around the room. . .");
             player.getCurrentRoom().describe();
+            System.out.println();
 
         } else if(command.startsWith("TAKE ")) {
             takeItem(command.substring(5));
+            System.out.println();
 
         } else if(command.startsWith("TALK ")){
             talkNPC(command.substring(5));
+            System.out.println();
 
         }else if(command.equalsIgnoreCase("INVENTORY")){
             player.getInventory().showInventory();
+            System.out.println();
 
         }else if(command.equalsIgnoreCase("JOURNAL")){
             player.getJournal().showClues();
+            System.out.println();
 
         }else if(command.equalsIgnoreCase("END NIGHT")){
             endNight();
+            System.out.println();
 
         }else {
             System.out.println("Unknown Command");
+            System.out.println();
         }
     }
 
@@ -198,13 +208,18 @@ public class Game {
 
         while(!GameOver){
             System.out.printf("\nNight %d\n", night);
-            System.out.printf("You are in: %s", player.getCurrentRoom().getName());
+            System.out.printf("You are in: %s\n", player.getCurrentRoom().getName());
             String command = "";
-            while(command.equalsIgnoreCase("END NIGHT")){
+            while(!command.equalsIgnoreCase("END NIGHT")){
                 for(int i = 0;i < commandlist.length; i++){
-                    System.out.printf("~ %s", commandlist[i]);
+                    System.out.printf("~ %s\n", commandlist[i]);
                 }
-                System.out.println("> ");
+                System.out.print("> ");
+                try {
+                    command = sc.nextLine();
+                } catch (Exception e) {
+                    System.out.println("Invalid input");
+                }
                 commands(command);
             }
         }
