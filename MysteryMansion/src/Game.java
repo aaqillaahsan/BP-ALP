@@ -19,15 +19,15 @@ public class Game {
 
     public void setup(){
         //Room declaration
-        Room mainHall = new Room("Main Hall");
-        Room livingRoom = new Room("Living Room");
-        Room diningRoom = new Room("Dining Room");
-        Room kitchen = new Room("Kitchen");
-        Room library = new Room("Library");
-        Room bedroom = new Room("Arthur's Bedroom");
-        Room garden = new Room("Garden");
-        Room basement = new Room("Basement");
-        Room hiddenRoom = new Room("Hidden Basement Room");
+        Room mainHall = new MainHall();
+        Room livingRoom = new LivingRoom();
+        Room diningRoom = new DiningRoom();
+        Room kitchen = new Kitchen();
+        Room library = new Library();
+        Room bedroom = new Bedroom();
+        Room garden = new Garden();
+        Room basement = new Basement();
+        Room hiddenRoom = new HiddenRoom();
 
         //Add connections
         mainHall.connectRoom(livingRoom);
@@ -58,13 +58,6 @@ public class Game {
         livingRoom.unlock();
         diningRoom.unlock();
         kitchen.unlock();
-
-        //Req item
-        library.setRequiredItem("Library Access Permission");
-        bedroom.setRequiredItem("Arthur's Bedroom Key");
-        garden.setRequiredItem("Garden Door Key");
-        basement.setRequiredItem("Basement Stair Key");
-        hiddenRoom.setRequiredItem("Hammer");
 
         rooms.add(mainHall);
         rooms.add(livingRoom);
@@ -123,13 +116,24 @@ public class Game {
             if(i.getName().equalsIgnoreCase(name)){
                 DialogClue clue = i.giveClue(night, player.getInventory());
                 if(clue != null){
-                    System.out.printf("\" %s \"", clue.getText());
-                    player.getJournal().addClue(clue);
+                    System.out.println(i.getName() + ": ");
+                    System.out.printf("\" %s \"\n", clue.getText());
+                    player.getJournal().addDClue(clue);
+                    return;
+                }
+
+                ConditionItem citem = i.checkItem(night, player.getInventory());
+                if(citem != null){
+                    System.out.println(i.getName() + ": ");
+                    System.out.printf("\" %s \"\n", citem.giveDialog());
+
+                    Item item = citem.give();
+                    player.getInventory().addItem(item);
                     return;
                 }
 
                 System.out.println(i.getName() + ": ");
-                System.out.printf("\" %s \"",i.Talk(night));
+                System.out.printf("\" %s \"\n",i.Talk(night));
                 return;
             }    
         }
@@ -151,7 +155,34 @@ public class Game {
             System.out.println("You may now access Garden and Basement");
         }
         if(night == 4){
+            Room Uroom = player.getCurrentRoom();
+            for(Room i: rooms){
+                if(i.getName().equalsIgnoreCase("Hidden Basement Room")){
+                    Uroom = i;
+                }
+            }
             System.out.println("There is an ominous feeling in the basement. . .");
+            for(Room i: rooms){
+                if(i.getName().equalsIgnoreCase("Basement")){
+                    i.addInteract(new CrackedWall(Uroom));
+                }
+            }
+        }
+    }
+
+    public void interact(String name){
+        Room current = player.getCurrentRoom();
+        Interactable inter = current.getInteract(name);
+
+        if(inter == null){
+            System.out.println("There no such thing to interact with.");
+            return;
+        }
+
+        String action = inter.interact(night, player);
+
+        if(action != null && !action.isEmpty()){
+            System.out.println(action);
         }
     }
 
@@ -193,6 +224,9 @@ public class Game {
             endNight();
             System.out.println();
 
+        }else if (command.startsWith("INTERACT ")){
+            interact(command.substring(9));
+
         }else {
             System.out.println("Unknown Command");
             System.out.println();
@@ -204,7 +238,7 @@ public class Game {
         System.out.println("A grand and isolated estate owned by a wealthy family. During a formal evening gathering, the family's heir, Arthur Ravenwood, mysteriously disappears. All exits are sealed, and no one is allowed to leave until the truth is uncovered.");
         System.out.println("Over the course of four nights, uncover the hidden secrets that will unfold and give a peaceful resolution to the family.");
         System.out.println("Goodluck, detective. . .");
-        String[] commandlist = {"GO (room name)", "LOOK", "TAKE (item name)", "TALK (npc name)", "INVENTORY", "JOURNAL", "END NIGHT"};
+        String[] commandlist = {"GO (room name)", "LOOK", "TAKE (item name)", "TALK (npc name)", "Interact", "INVENTORY", "JOURNAL", "END NIGHT"};
 
         while(!GameOver){
             System.out.printf("\nNight %d\n", night);

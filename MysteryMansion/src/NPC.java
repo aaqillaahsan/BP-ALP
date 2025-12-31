@@ -7,6 +7,7 @@ public abstract class NPC {
 
     protected ArrayList<NightDialogue> nightDialogue = new ArrayList<>();
     protected ArrayList<ConditionClue> conditionClues = new ArrayList<>();
+    protected ArrayList<ConditionItem> conditionItem = new ArrayList<>();
     protected String description;
 
     public NPC (String name, boolean isCulprit){
@@ -27,6 +28,17 @@ public abstract class NPC {
         for(ConditionClue i: conditionClues){
             if(i.canGive(night, dialogIndex, inventory)){
                 return i.giveClue();
+            }
+        }
+
+        return null;
+    }
+
+    public ConditionItem checkItem(int night, Inventory inventory){
+        int dialogIndex = nightDialogue.get(night - 1).getIndex();
+        for(ConditionItem i: conditionItem){
+            if(i.canGive(night, dialogIndex, inventory)){
+                return i;
             }
         }
 

@@ -2,6 +2,13 @@ public class Edmund extends NPC{
 
     public Edmund(){
         super("Edmund", false);
+
+        //Clue Logic
+        conditionClues.add(new ConditionClue(new DialogClue(getName(), "Dialog mansion locked", true), 1, 0, null));
+
+        //Item Logic
+        conditionItem.add(new ConditionItem(new GardenKey(), 3, 0, null, "Dialog give key"));
+        conditionItem.add(new ConditionItem(new BasementKey(), 3, 0, null, "Dialog give key"));
         setDesc();
     }
 

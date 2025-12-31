@@ -1,23 +1,15 @@
 
 import java.util.ArrayList;
 
-public class Room {
-    private String name;
-    private ArrayList<Item> items;
-    private ArrayList<NPC> npcs;
-    private ArrayList<Room> connections;
+public abstract class Room {
+    protected String name;
+    protected ArrayList<Item> items = new ArrayList<>();
+    protected ArrayList<NPC> npcs = new ArrayList<>();
+    protected ArrayList<Room> connections = new ArrayList<>();
+    protected ArrayList<Interactable> interactables = new ArrayList<>();
 
-    private boolean locked;
-    private String requiredItem;
-
-    public Room (String name){
-        this.name = name;   
-        items = new ArrayList<>();
-        npcs = new ArrayList<>();
-        connections = new ArrayList<>();
-        locked = true;
-        requiredItem = null;
-    }
+    protected boolean locked = true;
+    protected String requiredItem = null;
 
     public String getName(){
         return name;
@@ -47,6 +39,21 @@ public class Room {
 
     public String getRequiredItem(){
         return requiredItem;
+    }
+
+    //Interactables
+    public void addInteract(Interactable interactable){
+        interactables.add(interactable);
+    }
+
+    public Interactable getInteract(String name){
+        for(Interactable i: interactables){
+            if(i.getName().equalsIgnoreCase(name)){
+                return i;
+            }
+        }
+
+        return null;
     }
 
     //Others
@@ -80,9 +87,12 @@ public class Room {
         npcs.add(npc);
     }
 
+    protected abstract String roomDesc();
+
     public void describe(){
         System.out.printf("Room: %s\n", name);
-        int count = 0;
+        System.out.println(roomDesc());
+        int count = 1;
         if(!npcs.isEmpty()){
             if(npcs.size() == 1){
                 System.out.println("You see a person. . .");
@@ -91,6 +101,17 @@ public class Room {
             }
             for(NPC i: npcs){
                 System.out.printf("%d. %s, %s\n", count++, i.getName(), i.getDesc());
+            }
+        }
+
+        if(!interactables.isEmpty()){
+            if(interactables.size() == 1){
+                System.out.println("You see something to interact with");
+            } else {
+                System.out.println("You see a few things to interact with");
+            }
+            for(Interactable i: interactables){
+                System.out.println("- " + i.getName());
             }
         }
 

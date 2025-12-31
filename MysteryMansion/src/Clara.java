@@ -1,13 +1,11 @@
 public class Clara extends NPC{
-    private boolean giveKey;
 
     public Clara(){
         super("Clara", false);
-        giveKey = false;
 
         //Builds first night's dialogue
         NightDialogue n1 = new NightDialogue("Default Dialogue (night 1)");
-        n1.addDialogue("Dialogue 1 (Introducction)");
+        n1.addDialogue("Dialogue 1 (Introductionn)");
         n1.addDialogue("Dialogue 2 (Explains what happened)");
         n1.addDialogue("Dialogue 3 (Mention fighting in living room");
         nightDialogue.add(n1);
@@ -18,9 +16,12 @@ public class Clara extends NPC{
         n2.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n2);
 
+        //Clues logic
+        conditionClues.add(new ConditionClue(new DialogClue(getName(), "Dialogue (Knife)", false), 1, 0, "Kitchen Knife"));
+        conditionClues.add(new ConditionClue(new DialogClue(getName(), "Dialogue (Argument of arthur and lucian", true), 4, 0, "Arthur's Body"));
 
-        conditionClues.add(new ConditionClue(new DialogClue(getName(), "Dialogue (Knife)", false), 0, 1, "Knife"));
-        conditionClues.add(new ConditionClue(new DialogClue(getName(), "Dialogue (Argument of arthur and lucian", true), 3, 1, "Arthur's Body"));
+        //Item logic
+        conditionItem.add(new ConditionItem(new CabinetKey(), 1, 0, null, "Dialog (Give Key)"));
         setDesc();
     }
 

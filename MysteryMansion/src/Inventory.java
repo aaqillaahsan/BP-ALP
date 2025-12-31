@@ -24,7 +24,7 @@ public class Inventory {
 
     public void showInventory(){
         System.out.println("Inventory: ");
-        int count = 0;
+        int count = 1;
         for(Item i: items){
             System.out.printf("%d. %s\n", count++, i.getName());
         }

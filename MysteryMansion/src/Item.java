@@ -1,17 +1,9 @@
-public class Item {
-    private String name;
-    private String description;
-    private boolean isClue;
-    private boolean isReal;
-    private boolean KeyItem;
-
-    public Item (String name, String description, boolean isClue, boolean isReal ,boolean KeyItem){
-        this.name = name;
-        this.description = description;
-        this.isClue = isClue;
-        this.isReal = isReal;
-        this.KeyItem = KeyItem;
-    }
+public abstract class Item {
+    protected  String name;
+    protected  String description;
+    protected  boolean isClue;
+    protected  boolean isReal;
+    protected  boolean KeyItem;
 
     public String getName(){
         return name;
