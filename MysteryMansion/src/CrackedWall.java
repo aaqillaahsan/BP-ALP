@@ -1,7 +1,7 @@
 public class CrackedWall extends Interactable{
 
     public CrackedWall(Room Uroom){
-        name = "Slightly Cracked Wall.";
+        name = "Slightly Cracked Wall";
 
         conditionUnlock.add(new ConditionRoomUnlock(Uroom, "Hammer", 4, "The walls has been broken and flood out a foul stench."));
     }

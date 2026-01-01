@@ -23,4 +23,14 @@ public class Player {
     public Journal getJournal(){
         return journal;
     }
+
+    public boolean hasEvidence(String name){
+        if(inventory.hasItem(name)){
+            return true;
+        }
+        if(journal.hasClue(name)){
+            return true;
+        }
+        return false;
+    }
 }

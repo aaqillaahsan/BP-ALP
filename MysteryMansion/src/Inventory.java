@@ -69,4 +69,12 @@ public class Inventory {
             }
         }
     }
+
+    public void evidenceDisplay(){
+        int count = 1;
+        for(Item i: items){
+            if(i.isClue)
+            System.out.printf("%d. %s\n", count++, i.getName());
+        }
+    }
 }

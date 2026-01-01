@@ -1,7 +1,7 @@
 public class Wounds extends Interactable{
 
     public Wounds(){
-        name = "Check wounds.";
+        name = "Check wounds";
 
         conditionEClues.add(new ConditionEClue(new NoDef(), 4, null));
     }

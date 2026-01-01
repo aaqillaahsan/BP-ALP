@@ -10,6 +10,13 @@ public abstract class NPC {
     protected ArrayList<ConditionItem> conditionItem = new ArrayList<>();
     protected String description;
 
+    protected ArrayList<String> requiredEvidence = new ArrayList<>();
+    protected ArrayList<EvidenceReason> accuseReason = new ArrayList<>();
+    protected ArrayList<EvidenceResponse> evidenceResponses = new ArrayList<>();
+    protected ArrayList<String> denialReactions = new ArrayList<>();
+
+    protected ArrayList<String> executionLine = new ArrayList<>();
+
     public NPC (String name, boolean isCulprit){
         this.name = name;
         this.isCulprit = isCulprit;
@@ -55,4 +62,43 @@ public abstract class NPC {
     public boolean isCulprit(){
         return isCulprit;
     }
+
+    public boolean isRelevant(String evidenceName){
+        for(String i: requiredEvidence){
+            if(evidenceName.equalsIgnoreCase(i)) return true;
+        }
+        return false;
+    }
+
+    public String respondEvid(String evidenceName){
+        for(EvidenceResponse i: evidenceResponses){
+            if(i.getName().equalsIgnoreCase(evidenceName)) return i.getResponse();
+        }
+
+        if(!denialReactions.isEmpty()) return denialReactions.get(0);
+
+        return "That has nothing to do with me";
+    }
+
+    public boolean canConvict(ArrayList<String> Evidences){
+        int evicount = 0;
+
+        for(String i: Evidences){
+            if(isRelevant(i)){
+                evicount++;
+            }   
+        }
+        
+        return evicount >= 3;
+    }
+
+    public void explainEvidence(String name){
+        for(EvidenceReason i: accuseReason){
+            if(i.getName().equalsIgnoreCase(name)){
+                System.out.println(i.getReason());
+            }
+        }
+    }
+
+    public abstract void executionDay();
 }

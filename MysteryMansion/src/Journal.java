@@ -90,4 +90,21 @@ public class Journal {
         
         return false;
     }
+
+    public void evidenceDisplay(){
+        if(!clues.isEmpty()){
+            System.out.println("Dialogues =========================");
+            for(DialogClue i: clues){
+                System.out.println(i.getName());
+                System.out.println("---------------------------------");
+            }   
+        }
+        if(!eclues.isEmpty()){
+            System.out.println("Clues =============================");
+            for(EnviroClue i: eclues){
+                System.out.println(i.getName());
+                System.out.println("---------------------------------");
+            }
+        }
+    }
 }

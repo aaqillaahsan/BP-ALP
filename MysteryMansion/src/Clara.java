@@ -29,4 +29,9 @@ public class Clara extends NPC{
     public void setDesc(){
         description = "description";
     }
+
+    @Override
+    public void executionDay(){
+        System.out.println("execution day");
+    }
 }

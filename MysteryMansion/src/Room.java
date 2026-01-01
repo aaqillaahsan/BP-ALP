@@ -89,7 +89,7 @@ public abstract class Room {
 
     protected abstract String roomDesc();
 
-    public void describe(){
+    public void describe(Player player){
         System.out.printf("Room: %s\n", name);
         System.out.println(roomDesc());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -132,10 +132,23 @@ public abstract class Room {
         }
 
         if(!connections.isEmpty()){
-            System.out.printf("You see %d door(s) in the room\n", connections.size());
+            int hidden = 0;
+            for(Room i: connections){
+                if(player.getJournal().hasClue("Slightly Cracked Wall")){
+                    break;
+                }
+                if(i instanceof HiddenRoom){
+                    hidden++;
+                    break;
+                }
+            }
+            System.out.printf("You see %d door(s) in the room\n", connections.size() - hidden);
             System.out.println("Those doors lead to:");
             for(Room i: connections){
                 if(i.getName().equalsIgnoreCase("Hidden Basement Room")){
+                    if(player.getJournal().hasClue("Slightly Cracked Wall")){
+                        System.out.printf("- %s\n", i.getName());
+                    }
                     continue;
                 }
                 System.out.printf("- %s\n", i.getName());

@@ -10,4 +10,8 @@ public class Charles extends NPC{
         description = "description";
     }
 
+    @Override
+    public void executionDay(){
+        System.out.println("execution day");
+    }
 }
