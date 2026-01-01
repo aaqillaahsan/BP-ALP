@@ -12,7 +12,8 @@ public class CrackedWall extends Interactable{
     }
 
     @Override
-    protected String needsomething(){
+    protected String needsomething(Player player){
+        player.getJournal().addEClue(new CrackedWallClue());
         return "You need a tool to break this wall. Perhaps ask the Groundskeeper.";
     }
 }

@@ -70,6 +70,9 @@ public class Game {
         rooms.add(hiddenRoom);
 
         player.setCurrentRoom(mainHall);
+        player.getInventory().addItem(new BasementKey());
+        player.getInventory().addItem(new BedroomKey());
+        player.getInventory().addItem(new LibraryPermission());
     }
 
     public void goRoom(String name){
@@ -114,7 +117,7 @@ public class Game {
         Room current = player.getCurrentRoom();
         for(NPC i: current.getNPCS()){
             if(i.getName().equalsIgnoreCase(name)){
-                DialogClue clue = i.giveClue(night, player.getInventory());
+                DialogClue clue = i.giveClue(night, player.getInventory(), player.getJournal());
                 if(clue != null){
                     System.out.println(i.getName() + ": ");
                     System.out.printf("\" %s \"\n", clue.getText());
@@ -122,7 +125,7 @@ public class Game {
                     return;
                 }
 
-                ConditionItem citem = i.checkItem(night, player.getInventory());
+                ConditionItem citem = i.checkItem(night, player.getInventory(), player.getJournal());
                 if(citem != null){
                     System.out.println(i.getName() + ": ");
                     System.out.printf("\" %s \"\n", citem.giveDialog());
@@ -176,6 +179,7 @@ public class Game {
 
         if(inter == null){
             System.out.println("There no such thing to interact with.");
+            System.out.println();
             return;
         }
 
@@ -184,6 +188,7 @@ public class Game {
         if(action != null && !action.isEmpty()){
             System.out.println(action);
         }
+        System.out.println();
     }
 
     public void commands(String command){
@@ -238,7 +243,7 @@ public class Game {
         System.out.println("A grand and isolated estate owned by a wealthy family. During a formal evening gathering, the family's heir, Arthur Ravenwood, mysteriously disappears. All exits are sealed, and no one is allowed to leave until the truth is uncovered.");
         System.out.println("Over the course of four nights, uncover the hidden secrets that will unfold and give a peaceful resolution to the family.");
         System.out.println("Goodluck, detective. . .");
-        String[] commandlist = {"GO (room name)", "LOOK", "TAKE (item name)", "TALK (npc name)", "Interact", "INVENTORY", "JOURNAL", "END NIGHT"};
+        String[] commandlist = {"GO (room name)", "LOOK", "TAKE (item name)", "TALK (npc name)", "INTERACT (objec name)", "INVENTORY", "JOURNAL", "END NIGHT"};
 
         while(!GameOver){
             System.out.printf("\nNight %d\n", night);

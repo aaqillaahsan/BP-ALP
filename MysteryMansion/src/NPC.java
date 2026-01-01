@@ -23,10 +23,10 @@ public abstract class NPC {
         return nightDialogue.get(night -1).next();
     }
 
-    public DialogClue giveClue(int night, Inventory inventory){
+    public DialogClue giveClue(int night, Inventory inventory, Journal journal){
         int dialogIndex = nightDialogue.get(night - 1).getIndex();
         for(ConditionClue i: conditionClues){
-            if(i.canGive(night, dialogIndex, inventory)){
+            if(i.canGive(night, dialogIndex, inventory, journal)){
                 return i.giveClue();
             }
         }
@@ -34,10 +34,10 @@ public abstract class NPC {
         return null;
     }
 
-    public ConditionItem checkItem(int night, Inventory inventory){
+    public ConditionItem checkItem(int night, Inventory inventory, Journal journal){
         int dialogIndex = nightDialogue.get(night - 1).getIndex();
         for(ConditionItem i: conditionItem){
-            if(i.canGive(night, dialogIndex, inventory)){
+            if(i.canGive(night, dialogIndex, inventory, journal)){
                 return i;
             }
         }

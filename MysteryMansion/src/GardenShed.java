@@ -3,7 +3,7 @@ public class GardenShed extends Interactable{
     public GardenShed(){
         name = "Garden Shed";
 
-        conditionItem.add(new ConditionItem(new GroundskeeperTool(), 3, -1, "Garden Shed Key", "You unlock the shed and find the Groundskeeper's Tool"));
+        conditionItem.add(new ConditionItem(new GroundskeeperTool(), 3, -1, "Garden Shed Key", null, "You unlock the shed and find the Groundskeeper's Tool"));
     }
 
     @Override
@@ -12,7 +12,7 @@ public class GardenShed extends Interactable{
     }
 
     @Override
-    protected String needsomething(){
+    protected String needsomething(Player player){
         return "The shed is locked. Perhaps you should ask the Groundskeeper";
     }
 }

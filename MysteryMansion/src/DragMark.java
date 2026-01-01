@@ -1,7 +1,7 @@
 public class DragMark extends Interactable{
 
     public DragMark(){
-        name = "Bloody Drag Marks.";
+        name = "Bloody Drag Marks";
 
         conditionEClues.add(new ConditionEClue(new BloodyMark(), 3, null));
     }
@@ -12,7 +12,7 @@ public class DragMark extends Interactable{
     }
 
     @Override
-    protected String needsomething(){
+    protected String needsomething(Player player){
         return "You need something";
     }
 }

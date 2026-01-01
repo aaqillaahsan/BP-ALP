@@ -30,7 +30,7 @@ public abstract class Interactable {
 
         //Give items
         for(ConditionItem i: conditionItem){
-            if(i.canGive(night, -1, player.getInventory())){
+            if(i.canGive(night, -1, player.getInventory(), player.getJournal())){
                 Item item = i.give();
                 interacted = true;
                 player.getInventory().addItem(item);
@@ -47,9 +47,9 @@ public abstract class Interactable {
             }
         }
 
-        return needsomething();
+        return needsomething(player);
     }
 
     protected abstract String hasInteracted();
-    protected abstract String needsomething();
+    protected abstract String needsomething(Player player);
 }

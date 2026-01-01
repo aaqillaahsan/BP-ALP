@@ -12,7 +12,7 @@ public class ArthurBody extends Interactable{
     }
 
     @Override
-    protected String needsomething(){
+    protected String needsomething(Player player){
         return "You need something.";
     }
 }

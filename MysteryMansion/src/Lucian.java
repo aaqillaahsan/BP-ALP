@@ -4,7 +4,7 @@ public class Lucian extends NPC{
         super("Lucian", true);
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, "Dialog give key"));
+        conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "Dialog give key"));
         setDesc();
     }
 

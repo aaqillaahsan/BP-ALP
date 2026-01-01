@@ -92,6 +92,7 @@ public abstract class Room {
     public void describe(){
         System.out.printf("Room: %s\n", name);
         System.out.println(roomDesc());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         int count = 1;
         if(!npcs.isEmpty()){
             if(npcs.size() == 1){
@@ -102,6 +103,7 @@ public abstract class Room {
             for(NPC i: npcs){
                 System.out.printf("%d. %s, %s\n", count++, i.getName(), i.getDesc());
             }
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
         if(!interactables.isEmpty()){
@@ -113,6 +115,7 @@ public abstract class Room {
             for(Interactable i: interactables){
                 System.out.println("- " + i.getName());
             }
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
         
@@ -125,6 +128,7 @@ public abstract class Room {
             for(Item i: items){
                 System.out.println("- " + i.getName());
             }
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
         if(!connections.isEmpty()){
@@ -136,6 +140,7 @@ public abstract class Room {
                 }
                 System.out.printf("- %s\n", i.getName());
             }
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
     }
 }

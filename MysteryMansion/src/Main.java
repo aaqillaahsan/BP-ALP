@@ -70,7 +70,10 @@ public class Main {
 
             switch(choice){
                 case "p" -> game.Start();
-                case "e" -> System.out.println("Thank you for playing. Exiting...");
+                case "e" -> {
+                    System.out.println("Thank you for playing. Exiting...");
+                    System.exit(0);
+                }
                 default -> System.out.println("Invalid input");
             }
         } while (choice.equalsIgnoreCase("e"));

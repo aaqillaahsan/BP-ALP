@@ -10,7 +10,7 @@ public abstract class Item {
     }
 
     public String getDesc(){
-        return name + ": " + description;
+        return name + ":\n" + description;
     }
 
     public boolean isClue(){

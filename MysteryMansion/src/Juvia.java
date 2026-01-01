@@ -4,7 +4,7 @@ public class Juvia extends NPC{
         super("Juvia", false);
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new LibraryPermission(), 2, 0, null, "Dialog give permission"));
+        conditionItem.add(new ConditionItem(new LibraryPermission(), 2, 0, null, null, "Dialog give permission"));
         setDesc();
     }
 
