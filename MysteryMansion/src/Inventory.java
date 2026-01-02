@@ -73,8 +73,19 @@ public class Inventory {
     public void evidenceDisplay(){
         int count = 1;
         for(Item i: items){
-            if(i.isClue)
-            System.out.printf("%d. %s\n", count++, i.getName());
+            if(i.isClue){
+                System.out.printf("%d. %s\n", count++, i.getDesc());
+            }
         }
+    }
+
+    public boolean isItemClue(String name){
+        boolean check = false;
+        for(Item i: items){
+            if(i.getName().equalsIgnoreCase(name)){
+                check = i.isClue;
+            }
+        }
+        return check;
     }
 }

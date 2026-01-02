@@ -4,7 +4,7 @@ public class BrokenWineGlass extends Item{
         name = "Broken Wine Glass";
         description = "A broken wine glass. It appears to still have some wine in it.";
 
-        isClue = false;
+        isClue = true;
         isReal = false;
         KeyItem = false;
     }

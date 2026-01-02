@@ -74,6 +74,10 @@ public class Game {
         player.getInventory().addItem(new BedroomKey());
         player.getInventory().addItem(new LibraryPermission());
         player.getInventory().addItem(new Hammer());
+        player.getInventory().addItem(new BrokenWineGlass());
+        player.getInventory().addItem(new BloodstainedWeight());
+        player.getJournal().addEClue(new BloodyMark());
+        player.getJournal().addEClue(new ArthurCon());
     }
 
     public void goRoom(String name){
@@ -148,15 +152,18 @@ public class Game {
     public ArrayList<String> collectEvid(NPC accused){
         ArrayList<String> accepted = new ArrayList<>();
         String command ="";
+        System.out.println("ITEMS =============================");
         player.getInventory().evidenceDisplay();
+        System.out.println();
         player.getJournal().evidenceDisplay();
         while (true) { 
             System.out.println("\n~ ITEM (item name)");
             System.out.println("~ CLUE (clue name)");
             System.out.println("~ END CONVICTION");
-            System.out.println("> ");
+            System.out.print("> ");
             try {
                 command = sc.nextLine();
+                command = command.toUpperCase();
             } catch (Exception e) {
                 System.out.println("Invalid Input");
             }
@@ -167,10 +174,14 @@ public class Game {
                     System.out.println("You do not possess that evidence.");
                     continue;
                 }
+                if(player.getInventory().hasItem(evidence) && !player.getInventory().isItemClue(evidence)){
+                    System.out.println("That is not an evidence");
+                    continue;
+                }
 
                 accused.explainEvidence(evidence);
                 System.out.println(accused.getName()+ ":");
-                System.out.printf("\" %s \"",accused.respondEvid(evidence));
+                System.out.printf("\" %s \"\n",accused.respondEvid(evidence));
 
                 if(!accused.isRelevant(evidence)){
                     System.out.println("He's right, this doesn't make sense at all");
@@ -178,10 +189,12 @@ public class Game {
                 }
 
                 accepted.add(evidence);
-                System.out.println("Your feel your resolve grows stronger");
+                System.out.println("You feel your resolve grows stronger");
                 if(accepted.size() >= 3){
                     System.out.println("You feel like you have enough evidence to sentence them");
                 }
+            } else{
+                System.out.println("Unknown Command");
             }
         }
 
@@ -189,66 +202,115 @@ public class Game {
     }
 
     public void ending(NPC accused, ArrayList<String> Evidence){
+        System.out.println("\n\n\n\n\n\n");
+        boolean hasBody = false;
+        for(String i: Evidence){
+            if(i.equalsIgnoreCase("Arthur's Bloodied Body")) hasBody = true;
+        }
         //Ending 1
         if(Evidence.size() < 3){
-            System.out.println("Unfortunately, you failed as a Detective");
-            System.out.println("You did not present enough evidence.");
-            System.out.println("As a result, you can't convict anybody.");
-            System.out.println("The mystery behind Ravenwood Mansion remains unsolved.");
-            System.out.println("And it probably will for eons to come.");
-            System.out.println("Did Arthur die? was He murdered? or did He ran away from the Manse?");
-            System.out.println("Worst thing if He indeed was murdered.");
-            System.out.println(". . .");
-            System.out.println(". . .");
-            System.out.println("The killer still roams free.");
-            System.out.println("Living like a normal citizen.");
-            System.out.println("All because of your incompetence. . .");
-            System.out.println("=== BAD ENDING ===");
+            String[] ending1 = {
+                "Unfortunately, you failed as a Detective",
+                "You did not present enough evidence.",
+                "As a result, you can't convict anybody.",
+                "The mystery behind Ravenwood Mansion remains unsolved.",
+                "And it probably will for eons to come.",
+                "Did Arthur die? was He murdered? or did He ran away from the Manse?",
+                "Worst thing is if He indeed was murdered.",
+                ". . .",
+                ". . .",
+                "The killer still roams free.",
+                "Living like a normal citizen.",
+                "All because of your incompetence. . .",
+                "=== BAD ENDING ==="
+            };
+            for(String i: ending1){
+                System.out.println(i);
+                sc.nextLine();
+            }
             GameOver = true;
             return;
         }
 
         //Ending 2
-        if(!accused.isCulprit() && player.getJournal().hasClue("Arthur's Bloodied Body")){
-            System.out.println("Great job detective");
-            System.out.println("You've discovered the dark secrets of the Ravenwood Mansion");
-            System.out.println("Arthur's dead, and there's nothing can be done");
-            System.out.println("One can only pray and hope peace can come upon the family");
+        if(!accused.isCulprit() && hasBody){
+            String[] ending2p1 = {
+                "Great job detective",
+                "You've uncovered the dark secrets of the Ravenwood Mansion",
+                "Arthur's dead, and there's nothing can be done",
+                "One can only pray and hope peace can come upon the family",
+            };
+            String[] ending2p2= {
+                "The judge has deemed their crime worthy of death",
+                "Because of how heinous and sinister the actions that happened",
+                "On the execution day, You are ordered to be present as a witness. . .",
+            };
+            String[] ending2p3 = {
+                "You see at the corner of your eye. . .",
+                "Someone's grinning. Laughing even. But you can't make their face. . .",
+                "After witnessing their execution. . .",
+                "You felt doubt. . .",
+                "Have you really done a great job?",
+                "Have you. . .",
+                "Made the right choice?",
+                "=== BAD ENDING ==="
+            };
+            for(String i: ending2p1){
+                System.out.println(i);
+                sc.nextLine();
+            }
             System.out.printf("You've accused %s of being the culprit\n", accused.getName());
-            System.out.println("The judge has deemed their crime worthy of death");
-            System.out.println("Because of how heinous and sinister the actions that happened");
-            System.out.println("On the execution day, You are ordered to be present as a witness. . .");
+            sc.nextLine();
+
+            for(String i: ending2p2){
+                System.out.println(i);
+                sc.nextLine();
+            }
+    
             accused.executionDay();
 
-            System.out.println("You see at the corner of your eye. . .");
-            System.out.println("Someone's grinning. Laughing even. But you can't make their face. . .");
-            System.out.println("After witnessing their execution. . .");
-            System.out.println("You felt doubt. . .");
-            System.out.println("Have you really done a great job?");
-            System.out.println("Have you. . .");
-            System.out.println("Made the right choice?");
-            System.out.println("=== BAD ENDING ===");
+            for(String i: ending2p3){
+                System.out.println(i);
+                sc.nextLine();
+            }
             GameOver = true;
             return;
         }
 
         //Ending 3 
-        if(!accused.isCulprit() && !player.getJournal().hasClue("Arthur's Bloodied Body")){
-            System.out.println("You've. . .");
-            System.out.println("What have you done really?");
-            System.out.println("What have you solved?");
-            System.out.println("Where is Arthur?");
-            System.out.println("That's not important I guess");
-            System.out.println("The mystery behind Ravenwood Mansion seems to be left unsolved");
-            System.out.println("By you.");
-            System.out.println("Anyway. . .");
+        if(!accused.isCulprit() && !hasBody){
+            String[] ending3p1 = {
+                "You've. . .",
+                "What have you done really?",
+                "What have you solved?",
+                "Where is Arthur?",
+                "That's not important I guess",
+                "The mystery behind Ravenwood Mansion seems to be left unsolved",
+                "Because of you.",
+                "One can only speculate what really happened to Arthur.",
+            };
+            String[] ending3p2 = {
+                "The judge is. . .",
+                "Confused by what crime that the culprit accused of",
+                "Murder? well there isn't exactly a body presented",
+                "The judge deemed the ruling as Invalid",
+                "You felt ashamed. Your pride as a Detective is hurt"
+            };
+            for(String i: ending3p1){
+                System.out.println(i);
+                sc.nextLine();
+            }
+
             System.out.printf("You've accused %s of being the culprit\n", accused.getName());
-            System.out.println("The judge is. . .");
-            System.out.println("Confused by what crime that the culprit accused of");
-            System.out.println("Murder? well there isn't exactly a body presented");
-            System.out.println("The judge deemed the ruling as Invalid");
-            System.out.println("You felt ashamed. Your pride as a Detective is hurt");
+            sc.nextLine();
+
+            for(String i: ending3p2){
+                System.out.println(i);
+                sc.nextLine();
+            }
+
             System.out.printf("%s glares at you\n",accused.getName());
+            sc.nextLine();
             System.out.println("Even you know apology is not enough. . .");
             System.out.println("=== BAD ENDING ===");
             GameOver = true;
@@ -256,80 +318,150 @@ public class Game {
         }
 
         //Ending 4
-        if(accused.isCulprit() && !player.getJournal().hasClue("Arthur's Bloodied Body")){
-            System.out.println("You've. . .");
-            System.out.println("What have you done really?");
-            System.out.println("What have you solved?");
-            System.out.println("Where is Arthur?");
-            System.out.println("That's not important I guess");
-            System.out.println("The mystery behind Ravenwood Mansion seems to be left unsolved");
-            System.out.println("By you.");
-            System.out.println("Anyway. . .");
+        if(accused.isCulprit() && !hasBody){
+            String[] ending4 = {
+                "You've. . .",
+                "What have you done really?",
+                "What have you solved?",
+                "Where is Arthur?",
+                "That's not important I guess",
+                "The mystery behind Ravenwood Mansion seems to be left unsolved",
+                "Because of you.",
+                "One can only speculate what really happened to Arthur.",
+            };
+            String[] ending4p2 = {
+                "The judge is. . .",
+                "Confused by what crime that the culprit accused of",
+                "Murder? well there isn't exactly a body presented",
+                "The judge deemed the ruling as Invalid",
+                "You felt ashamed. Your pride as a Detective is hurt"
+            };
+            String[] ending4p3 = {
+                "Almost looked like He walked with. . . confidence? fear? confusion?",
+                "You cannot make sense of what You're feeling currently",
+                "Something's wrong. But. . . there's nothing can be done",
+                "=== BAD ENDING ==="
+            };
+
+            for(String i: ending4){
+                System.out.println(i);
+                sc.nextLine();
+            }
             System.out.printf("You've accused %s of being the culprit\n", accused.getName());
-            System.out.println("The judge is. . .");
-            System.out.println("Confused by what crime that the culprit accused of");
-            System.out.println("Murder? well there isn't exactly a body presented");
-            System.out.println("The judge deemed the ruling as Invalid");
-            System.out.println("You felt ashamed. Your pride as a Detective is hurt");
+            sc.nextLine();
+
+            for(String i: ending4p2){
+                System.out.println(i);
+                sc.nextLine();
+            }
             System.out.printf("%s left the room silently. . .\n", accused.getName());
-            System.out.println("Almost looked like He walked with. . . confidence? fear? confusion?");
-            System.out.println("You cannot make sense of what You're feeling currently");
-            System.out.println("Something's wrong. But. . . there's nothing can be done");
+            sc.nextLine();
+           
+            for(String i: ending4p3){
+                System.out.println(i);
+                sc.nextLine();
+            }
             GameOver = true;
             return;
         }
 
         //Ending 5
         if(accused.isCulprit() && Evidence.size() == accused.requiredEvidence.size()){
-            System.out.println("The deed is done");
-            System.out.println("The family and the staff are shocked");
-            System.out.println("Well You were too");
-            System.out.println("Great job Detective.");
-            System.out.println("Amazingly done");
+            String[] ending5 = {
+                "The deed is done",
+                "The family and the staff are shocked",
+                "Well You were too",
+                "Great job Detective.",
+                "Amazingly done"
+            };
+            String[] ending5p2 = {
+                "Who would've thought that Lucian would be the culprit",
+                "His sick narrow minded decision which ended Arthur's life. . .",
+                "You calmed yourself down. . .",
+                "You've managed to collect all possible evidence and connections to the murder",
+                "Your reputation echoes throughout the continent",
+                "'The Legendary Detective'",
+                "'Guardian of Peace'",
+                "'Truthfinder of Ravenwood Manse'",
+                "You felt proud in your achievements",
+                "The judge has deemed their crime worthy of death",
+                "On the execution day, You are ordered to be present as a witness. . ."
+            };
+            String[] ending5p3 = {
+                "You've felt accomplished",
+                "The family seemed to have come terms with their death",
+                "Arthur's and Lucian's. . .",
+                "The Mansion seemed to be back to normal",
+                "With Juvia being the current Head of the Family",
+                "While Charles goes to rehab about his gambling addiction. . .",
+                "It seems, the family will heal. . .",
+                "Another day comes. . .",
+                "=== TRUE ENDING ==="
+            };
+
+            for(String i: ending5){
+                System.out.println(i);
+                sc.nextLine();
+            }
             System.out.printf("You've accused %s of being the culprit\n", accused.getName());
-            System.out.println("Who would've thought that Lucian would be the culprit");
-            System.out.println("His sick narrow minded decision which ended Arthur's life. . .");
-            System.out.println("You calmed yourself down. . .");
-            System.out.println("You've managed to collect all possible evidence and connections to the murder");
-            System.out.println("Your reputation echoes throughout the continent");
-            System.out.println("'The Legendary Detective'");
-            System.out.println("'Guardian of Peace'");
-            System.out.println("'Truthfinder of Ravenwood Manse'");
-            System.out.println("You felt proud in your achievements");
-            System.out.println("The judge has deemed their crime worthy of death");
-            System.out.println("On the execution day, You are ordered to be present as a witness. . .");
+            sc.nextLine();
+            
+            for(String i: ending5p2){
+                System.out.println(i);
+                sc.nextLine();
+            }
+
             accused.executionDay();
-            System.out.println("You've felt accomplished");
-            System.out.println("The family seemed to have come terms with their death");
-            System.out.println("Arthur's and Lucian's. . .");
-            System.out.println("The Mansion seemed to be back to normal");
-            System.out.println("With Juvia being the current Head of the Family");
-            System.out.println("While Charles goes to rehab about his gambling addiction. . .");
-            System.out.println("It seems, the family will heal. . .");
-            System.out.println("Another day comes. . .");
-            System.out.println("=== TRUE ENDING ===");
+
+            for(String i: ending5p3){
+                System.out.println(i);
+                sc.nextLine();
+            }
             GameOver = true;
             return;
         }
 
-        if(accused.isCulprit()){
-            System.out.println("Great job detective");
-            System.out.println("The mystery behind the Ravenwood Mansion has been uncovered");
-            System.out.println("The family looked shocked");
-            System.out.println("But still, you felt like you could've done more");
+        //Ending 6
+        if(accused.isCulprit() && hasBody){
+            String[] ending6 = {
+                "Great job detective",
+                "The mystery behind the Ravenwood Mansion has been uncovered",
+                "The family looked shocked",
+                "But still, you felt like you could've done more"
+            };
+            String[] ending6p2 = {
+                "Who would've thought that Lucian would be the culprit",
+                "His sick narrow minded decision which ended Arthur's life. . .",
+                "You wonder, what's happening in his mind to cause all this",
+                "The judge has deemed their crime worthy of death",
+                "On the execution day, You are ordered to be present as a witness. . ."
+            };
+            String[] ending6p3 = {
+                "You felt glad that this is all over",
+                "The family. . .",
+                "They seem to be doing just well enough. . .",
+                "Another job finished. . .",
+                "=== GOOD ENDING ==="
+            };
+
+            for(String i: ending6){
+                System.out.println(i);
+                sc.nextLine();
+            }
+
             System.out.printf("You've accused %s of being the culprit\n", accused.getName());
-            System.out.println("Who would've thought that Lucian would be the culprit");
-            System.out.println("His sick narrow minded decision which ended Arthur's life. . .");
-            System.out.println("You wonder, what's happening in his mind to cause all this");
-            System.out.println("The judge has deemed their crime worthy of death");
-            System.out.println("On the execution day, You are ordered to be present as a witness. . .");
+            sc.nextLine();
+
+            for(String i: ending6p2){
+                System.out.println(i);
+                sc.nextLine();
+            }
             accused.executionDay();
 
-            System.out.println("You felt glad that this is all over");
-            System.out.println("The family. . .");
-            System.out.println("They seem to be doing just well enough. . .");
-            System.out.println("Another job finished. . .");
-            System.out.println("=== GOOD ENDING ===");
+            for(String i: ending6p3){
+                System.out.println(i);
+                sc.nextLine();
+            }
             GameOver = true;
         }
     }
@@ -399,6 +531,7 @@ public class Game {
         if(night == 4){
             System.out.println("It is the final night. You must resolve this problem. . .");
             Accuse();
+            return;
         }
 
         night++;
@@ -491,10 +624,18 @@ public class Game {
     }
 
     public void Start(){
-        System.out.println("Welcome to The Ravenwood Mansion");
-        System.out.println("A grand and isolated estate owned by a wealthy family. During a formal evening gathering, the family's heir, Arthur Ravenwood, mysteriously disappears. All exits are sealed, and no one is allowed to leave until the truth is uncovered.");
-        System.out.println("Over the course of four nights, uncover the hidden secrets that will unfold and give a peaceful resolution to the family.");
-        System.out.println("Goodluck, detective. . .");
+        System.out.print("Welcome to The Ravenwood Mansion");
+        sc.nextLine();
+        System.out.print("A grand and isolated estate owned by a wealthy family.");
+        sc.nextLine();
+        System.out.print("During a formal evening gathering, the family's heir, Arthur Ravenwood, mysteriously disappears.");
+        sc.nextLine();
+        System.out.print("All exits are sealed, and no one is allowed to leave until the truth is uncovered.");
+        sc.nextLine();
+        System.out.print("Over the course of four nights, uncover the hidden secrets that will unfold and give a peaceful resolution to the family.");
+        sc.nextLine();
+        System.out.print("Goodluck, detective. . .");
+        sc.nextLine();
         String[] commandlist = {"GO (room name)", "LOOK", "TAKE (item name)", "TALK (npc name)", "INTERACT (objec name)", "INVENTORY", "JOURNAL", "END NIGHT"};
 
         while(!GameOver){
@@ -510,6 +651,7 @@ public class Game {
                     command = sc.nextLine();
                 } catch (Exception e) {
                     System.out.println("Invalid input");
+                    continue;
                 }
                 commands(command);
             }

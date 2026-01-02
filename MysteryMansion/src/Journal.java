@@ -78,7 +78,7 @@ public class Journal {
 
     public boolean hasClue(String clueName){
         for(DialogClue i: clues){
-            if(i.getText().equalsIgnoreCase(clueName)){
+            if(i.getName().equalsIgnoreCase(clueName)){
                 return true;
             }
         }
@@ -96,6 +96,7 @@ public class Journal {
             System.out.println("Dialogues =========================");
             for(DialogClue i: clues){
                 System.out.println(i.getName());
+                i.displayClue();
                 System.out.println("---------------------------------");
             }   
         }
@@ -103,6 +104,7 @@ public class Journal {
             System.out.println("Clues =============================");
             for(EnviroClue i: eclues){
                 System.out.println(i.getName());
+                System.out.println(i.display());
                 System.out.println("---------------------------------");
             }
         }
