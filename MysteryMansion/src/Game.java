@@ -152,11 +152,11 @@ public class Game {
     public ArrayList<String> collectEvid(NPC accused){
         ArrayList<String> accepted = new ArrayList<>();
         String command ="";
-        System.out.println("ITEMS =============================");
-        player.getInventory().evidenceDisplay();
-        System.out.println();
-        player.getJournal().evidenceDisplay();
         while (true) { 
+            System.out.println("\nITEMS =============================");
+            player.getInventory().evidenceDisplay();
+            System.out.println();
+            player.getJournal().evidenceDisplay();
             System.out.println("\n~ ITEM (item name)");
             System.out.println("~ CLUE (clue name)");
             System.out.println("~ END CONVICTION");
@@ -185,6 +185,7 @@ public class Game {
 
                 if(!accused.isRelevant(evidence)){
                     System.out.println("He's right, this doesn't make sense at all");
+                    sc.nextLine();
                     continue;
                 }
 
@@ -195,7 +196,9 @@ public class Game {
                 }
             } else{
                 System.out.println("Unknown Command");
+                continue;
             }
+            sc.nextLine();
         }
 
         return accepted;
@@ -253,8 +256,9 @@ public class Game {
                 "Have you really done a great job?",
                 "Have you. . .",
                 "Made the right choice?",
-                "=== BAD ENDING ==="
+                "You've recieved a letter a few days later. . .",
             };
+            
             for(String i: ending2p1){
                 System.out.println(i);
                 sc.nextLine();
@@ -273,6 +277,11 @@ public class Game {
                 System.out.println(i);
                 sc.nextLine();
             }
+            
+            System.out.printf("You've collected %d of real evidence\n", player.realEvidenceCount(Evidence));
+            sc.nextLine();
+            System.out.println("=== BAD ENDING ===");
+            sc.nextLine();
             GameOver = true;
             return;
         }
@@ -312,7 +321,13 @@ public class Game {
             System.out.printf("%s glares at you\n",accused.getName());
             sc.nextLine();
             System.out.println("Even you know apology is not enough. . .");
+            sc.nextLine();
+            System.out.println("You've recieved a letter a few days later. . .");
+            sc.nextLine();
+            System.out.printf("You've collected %d of real evidence\n", player.realEvidenceCount(Evidence));
+            sc.nextLine();
             System.out.println("=== BAD ENDING ===");
+            sc.nextLine();
             GameOver = true;
             return;
         }
@@ -340,7 +355,7 @@ public class Game {
                 "Almost looked like He walked with. . . confidence? fear? confusion?",
                 "You cannot make sense of what You're feeling currently",
                 "Something's wrong. But. . . there's nothing can be done",
-                "=== BAD ENDING ==="
+                "You've recieved a letter a few days later. . .",
             };
 
             for(String i: ending4){
@@ -361,6 +376,10 @@ public class Game {
                 System.out.println(i);
                 sc.nextLine();
             }
+            System.out.printf("You've collected %d of real evidence\n", player.realEvidenceCount(Evidence));
+            sc.nextLine();
+            System.out.println("=== BAD ENDING ===");
+            sc.nextLine();
             GameOver = true;
             return;
         }
@@ -441,7 +460,7 @@ public class Game {
                 "The family. . .",
                 "They seem to be doing just well enough. . .",
                 "Another job finished. . .",
-                "=== GOOD ENDING ==="
+                "You've recieved a letter a few days later. . .",
             };
 
             for(String i: ending6){
@@ -462,6 +481,10 @@ public class Game {
                 System.out.println(i);
                 sc.nextLine();
             }
+            System.out.printf("You've collected %d of real evidence\n", player.realEvidenceCount(Evidence));
+            sc.nextLine();
+            System.out.println("=== GOOD ENDING ===");
+            sc.nextLine();
             GameOver = true;
         }
     }

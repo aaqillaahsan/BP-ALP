@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class Player {
     private Room currentRoom;
     private Inventory inventory;
@@ -32,5 +35,15 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public int realEvidenceCount(ArrayList<String> evidences){
+        int count = 0;
+        for(String i: evidences){
+            if(inventory.isItemReal(i)) count++;
+            if(journal.isClueReal(i)) count++;
+        }
+        
+        return count;
     }
 }

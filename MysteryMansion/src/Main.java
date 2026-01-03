@@ -43,27 +43,29 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception { 
-        Game game = new Game();
-        String[] validchoice = {"P","E"};
-        boolean valid = false;
-        Mainmenu();
         String choice = "";
         do { 
-            System.out.printf("Enter your choice: ");
-            try {
-                choice = sc.nextLine();
-                for(int i = 0; i < validchoice.length; i++){
-                    if(choice.equalsIgnoreCase(validchoice[i])){
-                        valid = true;
+            Mainmenu();
+            boolean valid = false;
+            String[] validchoice = {"P","E"};
+            Game game = new Game();
+            while(!valid){
+                System.out.printf("Enter your choice: ");
+                try {
+                    choice = sc.nextLine();
+                    for(int i = 0; i < validchoice.length; i++){
+                        if(choice.equalsIgnoreCase(validchoice[i])){
+                            valid = true;
+                        }
                     }
-                }
-                if(choice.length() != 1){
+                    if(choice.length() != 1){
+                        System.out.println("Invalid input");
+                    } else if(!valid){
+                        System.out.println("Invalid input");
+                    }
+                } catch (Exception e) {
                     System.out.println("Invalid input");
-                } else if(!valid){
-                    System.out.println("Invalid input");
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid input");
             }
 
             choice = choice.toLowerCase();
@@ -72,12 +74,8 @@ public class Main {
                 case "p" -> game.Start();
                 case "e" -> {
                     System.out.println("Thank you for playing. Exiting...");
-                    System.exit(0);
                 }
-                default -> System.out.println("Invalid input");
             }
-        } while (choice.equalsIgnoreCase("e"));
+        } while (!choice.equalsIgnoreCase("e"));
     }
-
-
 }

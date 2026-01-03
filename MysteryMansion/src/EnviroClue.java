@@ -10,4 +10,8 @@ public class EnviroClue {
     public String display(){
        return desc;
     }
+
+    public boolean getReal(){
+        return isReal;
+    }
 }

@@ -88,4 +88,14 @@ public class Inventory {
         }
         return check;
     }
+
+    public boolean isItemReal(String name){
+        boolean check = false;
+        for(Item i: items){
+            if(i.getName().equalsIgnoreCase(name)){
+                check = i.isReal;
+            }
+        }
+        return check;
+    }
 }

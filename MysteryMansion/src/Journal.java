@@ -109,4 +109,16 @@ public class Journal {
             }
         }
     }
+
+    public boolean isClueReal(String name){
+        boolean check = false;
+        for(EnviroClue i:eclues){
+            if(i.getName().equalsIgnoreCase(name)) check = i.getReal();
+        }
+        for(DialogClue i:clues){
+            if(i.getName().equalsIgnoreCase(name)) check = i.isReal(); 
+        }
+
+        return check;
+    }
 }
