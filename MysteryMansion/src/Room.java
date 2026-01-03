@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public abstract class Room {
     protected String name;
+    protected String keyFrom;
     protected ArrayList<Item> items = new ArrayList<>();
     protected ArrayList<NPC> npcs = new ArrayList<>();
     protected ArrayList<Room> connections = new ArrayList<>();
@@ -39,6 +40,10 @@ public abstract class Room {
 
     public String getRequiredItem(){
         return requiredItem;
+    }
+
+    public String requiredFrom(){
+        return keyFrom;
     }
 
     //Interactables

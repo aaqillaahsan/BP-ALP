@@ -52,6 +52,8 @@ public class Lucian extends NPC{
 
         //Evidence reasons
         accuseReason.add(new EvidenceReason("Locked Mansion", "There is no way an outsider can do this. So you are a suspect!"));
+        accuseReason.add(new EvidenceReason("Altered Will Draft", "Your Father's will says that you were to be removed. Hence you act as a revenge"));
+        accuseReason.add(new EvidenceReason("Arthur's Journal", "In this journal, your Father wrote blablablabla"));
 
         //Item Logic
         conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "Dialog give key"));

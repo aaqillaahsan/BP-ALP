@@ -90,8 +90,14 @@ public class Game {
                     if(Key != null && player.getInventory().hasItem(Key)){
                         i.unlock();
                         System.out.printf("You used %s . . .\n", Key);
+                    } else if(night >= 2 && i.getName().equalsIgnoreCase("Arthur's Bedroom") || i.getName().equalsIgnoreCase("Library")){
+                        System.out.println(i.keyFrom);
+                        return;
+                    } else if(night >= 3 && i.getName().equalsIgnoreCase("Basement") || i.getName().equalsIgnoreCase("Garden")){
+                        System.out.println(i.keyFrom);
+                        return;
                     } else {
-                        System.out.println("That room is inaccessible. For now. . .");
+                        System.out.println("That room is inaccessible. For now. . . ");
                         return;
                     }
                 }
@@ -647,19 +653,20 @@ public class Game {
     }
 
     public void Start(){
-        System.out.print("Welcome to The Ravenwood Mansion");
-        sc.nextLine();
-        System.out.print("A grand and isolated estate owned by a wealthy family.");
-        sc.nextLine();
-        System.out.print("During a formal evening gathering, the family's heir, Arthur Ravenwood, mysteriously disappears.");
-        sc.nextLine();
-        System.out.print("All exits are sealed, and no one is allowed to leave until the truth is uncovered.");
-        sc.nextLine();
-        System.out.print("Over the course of four nights, uncover the hidden secrets that will unfold and give a peaceful resolution to the family.");
-        sc.nextLine();
-        System.out.print("Goodluck, detective. . .");
-        sc.nextLine();
+        String[] intro = {
+            "Welcome to The Ravenwood Mansion",
+            "A grand and isolated estate owned by a wealthy family.",
+            "During a formal evening gathering, the family's heir, Arthur Ravenwood, mysteriously disappears.",
+            "All exits are sealed, and no one is allowed to leave until the truth is uncovered.",
+            "Over the course of four nights, uncover the hidden secrets that will unfold and give a peaceful resolution to the family.",
+            "Goodluck, detective. . ."
+        };
         String[] commandlist = {"GO (room name)", "LOOK", "TAKE (item name)", "TALK (npc name)", "INTERACT (objec name)", "INVENTORY", "JOURNAL", "END NIGHT"};
+
+        for(String i: intro){
+            System.out.print(i);
+            sc.nextLine();
+        }
 
         while(!GameOver){
             System.out.printf("\nNight %d\n", night);
