@@ -13,6 +13,6 @@ public class Library extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Library Desc";
+        return "Books can be seen from left to right. The smell of books is strong here. ";
     }
 }
