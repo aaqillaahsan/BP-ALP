@@ -8,6 +8,6 @@ public class DiningRoom extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Dining Room Desc";
+        return "A quiet and grand hall where once a family used to gather";
     }
 }
