@@ -9,6 +9,6 @@ public class MainHall extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Main Hall Description";
+        return "A grand hall connecting every room in the mansion";
     }
 }
