@@ -35,11 +35,11 @@ public class Edmund extends NPC{
         nightDialogue.add(n4);
 
         //Clue Logic
-        conditionClues.add(new ConditionClue(new DialogClue("Locked Mansion",getName(), "Dialog mansion locked", true), 1, 0, null,null));
+        conditionClues.add(new ConditionClue(new DialogClue("Locked Mansion",getName(), "Ever since Arthur went missing, the mansion has been kept locked", true), 1, 0, null,null));
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new GardenKey(), 3, 0, null, null, "Dialog give key"));
-        conditionItem.add(new ConditionItem(new BasementKey(), 3, 0, null, null, "Dialog give key"));
+        conditionItem.add(new ConditionItem(new GardenKey(), 3, 0, null, null, "Take this key to open the garden"));
+        conditionItem.add(new ConditionItem(new BasementKey(), 3, 0, null, null, "Take this key to open the basement"));
         setDesc();
     }
 
