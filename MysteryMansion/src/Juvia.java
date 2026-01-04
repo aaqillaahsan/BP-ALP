@@ -39,7 +39,7 @@ public class Juvia extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "Arthur’s wife, struggling with grief and uncertainty. Emotionally strained yet composed, she knows her husband kept secrets even from those closest to him.";
     }
 
     @Override
