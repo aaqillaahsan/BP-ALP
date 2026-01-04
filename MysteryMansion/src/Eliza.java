@@ -42,6 +42,18 @@ public class Eliza extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+                String [] dialog = {
+            "The library is silent. Dust hangs in the lamplight as Eliza stands near the shelves, fingers pressed into the spine of an unread book.",
+            "I always thought the library was the safest place in the house.\n Quiet. Ordered. Away from arguments.",
+            "Father believed words mattered.\n That if people spoke honestly, things could be fixed.\n I think that belief is what killed him.",
+            "You look at me and see someone harmless.\n Someone who stayed away from the fighting.\n But listening teaches you things shouting never will.",
+            "The person who hurt him didn’t lose control.\n They didn’t need to.\n Father would have listened until it was too late.",
+            "He trusted family… even when they disappointed him.\n Especially then.",
+            "If you condemn the wrong person today,\n you won’t just lose the truth—\n you’ll lose whatever Father believed this family could still be."
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }

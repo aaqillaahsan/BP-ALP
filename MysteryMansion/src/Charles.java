@@ -45,6 +45,19 @@ public class Charles extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+        String [] dialog = {
+            "The mansion is silent in a way it has never been before. No doors creak. No one argues. All eyes turn toward Charles.",
+            "So this is how it ends.\n Funny… all that noise I made, all those fights—and it still ends quietly.",
+            "You know, Arthur always said I’d be the death of him.\n Guess he was wrong about that too.",
+            "I won’t pretend I was a good brother.\n I was angry. I was drowning in debt. I hated him some days.\n But hatred isn’t the same as murder.",
+            "If you’re doing this because it looks right—\n because I was loud, reckless, easy—\n then congratulations.\n I played my part perfectly.",
+            "The real killer didn’t shout.\n Didn’t throw glasses or slam doors.\n He waited until Arthur trusted him enough to turn his back.",
+            "That’s the difference between rage and intent.\n One leaves bruises.\n The other leaves bodies.",
+            "If I die today, remember this—\n you didn’t punish the angriest man in the room.\n You punished the most obvious one.",
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }

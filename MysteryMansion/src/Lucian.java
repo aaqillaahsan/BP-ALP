@@ -77,6 +77,22 @@ public class Lucian extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+        String [] dialog = {
+            "Lucian stands perfectly still. No restraints are needed. His calm is deliberate—but strained.",
+            "So… you’ve decided.",
+            "I warned you about certainty.\n About mistaking patterns for truth.\n But here we are.",
+            "Do you know how exhausting it is—\n watching everyone stumble toward the answer,\n convinced they’re being clever?",
+            "Father loved control.\n He called it order.\n What he really meant was obedience.",
+            "He was going to erase me.\n Not just from the will—\n from the family.\n From history.",
+            "I didn’t plan to kill him.\n I planned to make him listen.\n Just once.",
+            "But he never did.\n He turned his back.\n And in that moment… everything became very simple.",
+            "No struggle.\n No fear.\n He trusted me.",
+            "You were all so eager to blame the loud ones.\n The desperate ones.\n The ones who couldn’t hide what they felt.",
+            "I only needed patience.\n Silence does the rest."
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }

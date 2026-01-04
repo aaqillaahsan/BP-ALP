@@ -53,6 +53,19 @@ public class Clara extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+        String [] dialog = {
+            "The kitchen is spotless, but the air is heavy. Clara stands with her hands folded, eyes lowered—not in fear, but in regret.",
+            "I always believed if I stayed quiet, nothing bad would touch me.\n That was the rule in this house—clean the mess, don’t ask how it was made.",
+            "You see a servant with keys and shadows to hide in.\n I see a woman who waited too long to speak.",
+            "Yes… I heard things.\n Footsteps when the house should’ve been asleep.\n A voice that went from pleading to calm far too quickly.",
+            "I told myself it wasn’t my place.\n That powerful families bury their own problems.\n That silence was safer than truth.",
+            "If that silence condemns me now… then perhaps this is what I deserve.",
+            "But hear this before you decide—\n murder doesn’t sound like chaos.\n It sounds like certainty.",
+            "Arthur didn’t fight back.\n He trusted the person standing in front of him.\n I heard it in the way the room went still."
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }

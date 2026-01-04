@@ -1,10 +1,12 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class NPC {
     private String name;
     private boolean isCulprit;
 
+    protected static final Scanner sc= new Scanner(System.in);
     protected ArrayList<NightDialogue> nightDialogue = new ArrayList<>();
     protected ArrayList<ConditionClue> conditionClues = new ArrayList<>();
     protected ArrayList<ConditionItem> conditionItem = new ArrayList<>();

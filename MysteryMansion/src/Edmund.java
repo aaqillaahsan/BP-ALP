@@ -50,6 +50,19 @@ public class Edmund extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+        String [] dialog = {
+            "The mansion stands perfectly orderly, as it always has. Edmund straightens his gloves, posture immaculate, even now.",
+            "So. Disorder has finally reached its conclusion.",
+            "I have served this family for decades.\n I have seen anger, greed, betrayal—and I have cleaned up after all of it.\n But I did not commit murder.",
+            "You accuse me because I hold keys.\n Because I understand routines.\n Because I move unseen.\n These are tools of service—not guilt.",
+            "I locked the mansion to preserve truth.\n Not to conceal it.\n A locked house does not create a killer—it reveals one.",
+            "Mr. Arthur trusted structure.\n He trusted predictability.\n And above all, he trusted certain people without question.",
+            "There were no signs of struggle.\n No desperation.\n That alone should have narrowed your focus.",
+            "A man like Arthur does not lower his guard for staff.\n He does so for family."
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }

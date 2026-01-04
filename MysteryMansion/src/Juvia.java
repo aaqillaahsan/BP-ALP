@@ -44,6 +44,18 @@ public class Juvia extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+        String [] dialog = {
+            "The mansion feels hollow without Arthur. Juvia stands composed, hands clasped, grief carefully contained.",
+            "I never imagined this house would become a courtroom.\n Or that love would be measured against suspicion.",
+            "Arthur and I argued, yes.\n Marriage is not silence—it is disagreement followed by forgiveness.",
+            "He was afraid near the end.\n Not of strangers.\n Of someone close enough to hurt him without raising his voice.",
+            "You may think grief clouds judgment.\n But grief sharpens memory.\n It makes every quiet moment impossible to forget.",
+            "Whoever did this didn’t fight him.\n They spoke to him.\n And he listened.",
+            "If you choose wrongly today,\n then Arthur will die a second time—\n buried beneath fear instead of truth."
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }

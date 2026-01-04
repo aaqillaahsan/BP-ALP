@@ -70,14 +70,14 @@ public class Game {
         rooms.add(hiddenRoom);
 
         player.setCurrentRoom(mainHall);
-        player.getInventory().addItem(new BasementKey());
+        /*player.getInventory().addItem(new BasementKey());
         player.getInventory().addItem(new BedroomKey());
         player.getInventory().addItem(new LibraryPermission());
         player.getInventory().addItem(new Hammer());
         player.getInventory().addItem(new BrokenWineGlass());
         player.getInventory().addItem(new BloodstainedWeight());
         player.getJournal().addEClue(new BloodyMark());
-        player.getJournal().addEClue(new ArthurCon());
+        player.getJournal().addEClue(new ArthurCon());*/
     }
 
     public void goRoom(String name){

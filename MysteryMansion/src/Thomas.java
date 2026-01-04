@@ -44,6 +44,19 @@ public class Thomas extends NPC{
 
     @Override
     public void executionDay(){
-        System.out.println("execution day");
+        String [] dialog = {
+            "Dirt still stains Thomas’s hands. He doesn’t bother to wipe them clean.",
+            "Funny thing about working outside.\n You get used to being blamed for whatever’s dug up.",
+            "Yeah, I’ve got tools.\n Heavy ones.\n But tools don’t choose when to swing themselves.",
+            "I was alone most of that night.\n Not hiding—working.\n There’s a difference.",
+            "You think murder looks like sweat and mud.\n Like panic.\n Like someone losing control.",
+            "But what you found downstairs?\n That wasn’t messy.\n That was careful.",
+            "Arthur didn’t fight back.\n Someone he trusted was standing right in front of him.",
+            "If you’re ending this on guesses,\n then you’ve already buried the truth."
+        };
+        for(String i: dialog){
+            System.out.println(i);
+            sc.nextLine();
+        }
     }
 }
