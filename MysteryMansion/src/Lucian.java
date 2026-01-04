@@ -54,6 +54,12 @@ public class Lucian extends NPC{
         accuseReason.add(new EvidenceReason("Locked Mansion", "There is no way an outsider can do this. So you are a suspect!"));
         accuseReason.add(new EvidenceReason("Altered Will Draft", "Your Father's will says that you were to be removed. Hence you act as a revenge"));
         accuseReason.add(new EvidenceReason("Arthur's Journal", "In this journal, your Father wrote blablablabla"));
+        accuseReason.add(new EvidenceReason("Footprints near basement window", "The footprints matched your description, so you are a suspect!"));
+        accuseReason.add(new EvidenceReason("Blood-Stained Paperweight", "This is the weapon found in the basement. It used to belong in Arthur's Bedroom where you have the key to"));
+        accuseaReason.add(new EvidenceReason("Bloody Drag Marks", "You dragged his body to wherever you hid him in the basement"));
+        accuseReason.add(new EvidenceReason("Arthur's Bloodied Body", "His body was found bloodied hidden in the basement. You did this! "));
+        accuseReason.add(new EvidenceReason(" No Defensive Wound", "His wound signify no resistance. Which means you are a suspect"));
+        accuseReason. add(new EvidenceReason("Arthur and Lucian's Argument", "The arguments signify your motive of why you might be doing this to Arthur"));
 
         //Item Logic
         conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "Dialog give key"));
