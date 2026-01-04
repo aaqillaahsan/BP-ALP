@@ -37,7 +37,7 @@ public class Eliza extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "Arthur’s quiet and introspective daughter. She spends most of her time in the library, watching and listening more than speaking. Her insights are subtle but meaningful.";
     }
 
     @Override
