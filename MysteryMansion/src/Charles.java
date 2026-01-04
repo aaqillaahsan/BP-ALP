@@ -40,7 +40,7 @@ public class Charles extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "Arthur’s hot-tempered brother. Burdened by debt and known for loud arguments, he appears suspicious at first glance, but his emotions are worn openly rather than hidden.";
     }
 
     @Override
