@@ -12,6 +12,6 @@ public class Basement extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Basement desc";
+        return "Poorly lit basement where you can barely see what's in front of you";
     }
 }
