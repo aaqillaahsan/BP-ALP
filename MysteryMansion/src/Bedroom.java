@@ -12,6 +12,6 @@ public class Bedroom extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Bedroom Desc";
+        return "A room full of folder stacked everywhere yet surprisingly tidy";
     }
 }
