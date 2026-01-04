@@ -58,7 +58,7 @@ public class Lucian extends NPC{
         accuseReason.add(new EvidenceReason("Blood-Stained Paperweight", "This is the weapon found in the basement. It used to belong in Arthur's Bedroom where you have the key to"));
         accuseReason.add(new EvidenceReason("Bloody Drag Marks", "You dragged his body to wherever you hid him in the basement"));
         accuseReason.add(new EvidenceReason("Arthur's Bloodied Body", "His body was found bloodied hidden in the basement. You did this! "));
-        accuseReason.add(new EvidenceReason(" No Defensive Wound", "His wound signify no resistance. Which means you are a suspect"));
+        accuseReason.add(new EvidenceReason("No Defensive Wound", "His wound signify no resistance. Which means you are a suspect"));
         accuseReason.add(new EvidenceReason("Arthur and Lucian's Argument", "The arguments signify your motive of why you might be doing this to Arthur"));
 
         //Item Logic
