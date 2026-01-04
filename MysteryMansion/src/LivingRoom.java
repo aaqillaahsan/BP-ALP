@@ -9,6 +9,6 @@ public class LivingRoom extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Living Room Desc";
+        return "A room with welcoming feel. A contrast with what's happening in the mansion";
     }
 }
