@@ -13,6 +13,6 @@ public class Garden extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Garden desc";
+        return "A garden filled with greenery and flowers. It's apparent that it is maintained well.";
     }
 }
