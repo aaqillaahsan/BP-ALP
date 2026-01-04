@@ -33,7 +33,7 @@ public class Juvia extends NPC{
         nightDialogue.add(n4);
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new LibraryPermission(), 2, 0, null, null, "Dialog give permission"));
+        conditionItem.add(new ConditionItem(new LibraryPermission(), 2, 0, null, null, "The library is restricted, but I’ll allow you in."));
         setDesc();
     }
 
