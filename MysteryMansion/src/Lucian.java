@@ -72,7 +72,7 @@ public class Lucian extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "Arthur’s eldest son. Calm, intelligent, and carefully controlled, Lucian presents himself as rational and cooperative, rarely revealing his true emotions.";
     }
 
     @Override
