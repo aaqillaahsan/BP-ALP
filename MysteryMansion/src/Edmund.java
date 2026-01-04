@@ -45,7 +45,7 @@ public class Edmund extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "The composed and professional head butler of Ravenwood Mansion. He values order and routine above all else and closely observes the movements of everyone in the house.";
     }
 
     @Override
