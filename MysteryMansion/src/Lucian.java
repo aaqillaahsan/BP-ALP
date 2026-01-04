@@ -4,24 +4,24 @@ public class Lucian extends NPC{
         super("Lucian", true);
 
         //Builds first night's dialogue
-        NightDialogue n1 = new NightDialogue("Nothing seems out of place during the early hours");
+        NightDialogue n1 = new NightDialogue("Default Dialogue (night 1)");
         n1.addDialogue("Dialogue 1 (Introductionn)");
         n1.addDialogue("Dialogue 2 (Explains what happened)");
         n1.addDialogue("Dialogue 3 (Mention fighting in living room");
         nightDialogue.add(n1);
 
         //Builds second night's dialogue
-        NightDialogue n2 = new NightDialogue("The night carries a strange but undefined feeling.");
+        NightDialogue n2 = new NightDialogue("Default Dialogue (night 2");
         n2.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n2);
 
         //Builds third night's dialogue
-        NightDialogue n3 = new NightDialogue("There is a sense that things have shifted tonight.");
+        NightDialogue n3 = new NightDialogue("Default Dialogue (night 3)");
         n3.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n3);
 
         //Builds fourth night's dialogue
-        NightDialogue n4 = new NightDialogue("The atmosphere is thick and difficult to ignore.");
+        NightDialogue n4 = new NightDialogue("Default Dialogue (night 4)");
         n4.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n4);
 
@@ -54,15 +54,9 @@ public class Lucian extends NPC{
         accuseReason.add(new EvidenceReason("Locked Mansion", "There is no way an outsider can do this. So you are a suspect!"));
         accuseReason.add(new EvidenceReason("Altered Will Draft", "Your Father's will says that you were to be removed. Hence you act as a revenge"));
         accuseReason.add(new EvidenceReason("Arthur's Journal", "In this journal, your Father wrote blablablabla"));
-        accuseReason.add(new EvidenceReason("Footprints near basement window", "The footprints matched your description, so you are a suspect!"));
-        accuseReason.add(new EvidenceReason("Blood-Stained Paperweight", "This is the weapon found in the basement. It used to belong in Arthur's Bedroom where you have the key to"));
-        accuseaReason.add(new EvidenceReason("Bloody Drag Marks", "You dragged his body to wherever you hid him in the basement"));
-        accuseReason.add(new EvidenceReason("Arthur's Bloodied Body", "His body was found bloodied hidden in the basement. You did this! "));
-        accuseReason.add(new EvidenceReason(" No Defensive Wound", "His wound signify no resistance. Which means you are a suspect"));
-        accuseReason. add(new EvidenceReason("Arthur and Lucian's Argument", "The arguments signify your motive of why you might be doing this to Arthur"));
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "Dialog give key"));
+        conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "This key opens Arthur’s bedroom use it wisely."));
         setDesc();
     }
 
