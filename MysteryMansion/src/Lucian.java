@@ -4,25 +4,35 @@ public class Lucian extends NPC{
         super("Lucian", true);
 
         //Builds first night's dialogue
-        NightDialogue n1 = new NightDialogue("Default Dialogue (night 1)");
-        n1.addDialogue("Dialogue 1 (Introductionn)");
-        n1.addDialogue("Dialogue 2 (Explains what happened)");
-        n1.addDialogue("Dialogue 3 (Mention fighting in living room");
+        NightDialogue n1 = new NightDialogue("Nothing seems out of place during the early hours");
+        n1.addDialogue("Lucian Ravenwood.\n" + "I understand this situation is… unsettling, but panic will not help anyone.");
+        n1.addDialogue("Father excused himself after dinner.\n" + "He was upset, yes—but he often was. That doesn’t mean something terrible happened.");
+        n1.addDialogue("If you’re referring to the argument, it was between Father and Uncle Charles.\n" + "I stayed out of it. Conflicts like that were beneath me.");
+        n1.addDialogue("I retired early that night.\n" + "I prefer rest over pointless confrontation.");
         nightDialogue.add(n1);
 
         //Builds second night's dialogue
-        NightDialogue n2 = new NightDialogue("Default Dialogue (night 2");
-        n2.addDialogue("Dialogue 1 ()");
+        NightDialogue n2 = new NightDialogue("The night carries a strange but undefined feeling.");
+        n2.addDialogue("The mood has shifted.\n" + "People are starting to imagine patterns that don’t exist.");
+        n2.addDialogue("Inheritance rumors are exactly that—rumors.\n" + "Father changed his mind often.");
+        n2.addDialogue("He spent a lot of time writing lately.\n" + "That doesn’t mean every page is a confession.");
+        n2.addDialogue("I find it troubling how easily suspicion replaces logic.");
         nightDialogue.add(n2);
 
         //Builds third night's dialogue
-        NightDialogue n3 = new NightDialogue("Default Dialogue (night 3)");
-        n3.addDialogue("Dialogue 1 ()");
+        NightDialogue n3 = new NightDialogue("There is a sense that things have shifted tonight.");
+        n3.addDialogue("This investigation has gone far enough.\n" + "Now you’re talking about blood and basements.");
+        n3.addDialogue("A paperweight? Drag marks?\n" + "You’re describing brute force—not calculation.");
+        n3.addDialogue("Many people have access to the garden and lower levels.\n" + "Singling me out is convenient, not fair.");
+        n3.addDialogue("Father was difficult… but that doesn’t mean I wished him dead.");
         nightDialogue.add(n3);
 
         //Builds fourth night's dialogue
-        NightDialogue n4 = new NightDialogue("Default Dialogue (night 4)");
-        n4.addDialogue("Dialogue 1 ()");
+        NightDialogue n4 = new NightDialogue("The atmosphere is thick and difficult to ignore.");
+        n4.addDialogue("This night feels different.\n" + "You’ve already decided, haven’t you?");
+        n4.addDialogue("You think you understand my family?\n" + "You think you understand him?");
+        n4.addDialogue("I won’t deny that Father and I disagreed.\n But disagreement does not equal murder.");
+        n4.addDialogue("Be careful not to confuse suspicion with certainty.\n Once an accusation is made, it cannot be undone.");
         nightDialogue.add(n4);
 
         //Req/Connected evidence
