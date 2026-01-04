@@ -48,7 +48,7 @@ public class Clara extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "The mansion’s long-serving housekeeper. Quiet, observant, and more aware of family tensions than she lets on. Her access to private rooms makes her a silent witness to many secrets.";
     }
 
     @Override
