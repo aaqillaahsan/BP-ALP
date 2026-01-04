@@ -9,6 +9,6 @@ public class HiddenRoom extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Hiddenroom desc";
+        return "A dark room filled to the brim with the smell of rot";
     }
 }
