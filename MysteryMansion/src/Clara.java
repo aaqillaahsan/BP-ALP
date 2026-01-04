@@ -38,11 +38,11 @@ public class Clara extends NPC{
         nightDialogue.add(n4);
 
         //Clues logic
-        conditionClues.add(new ConditionClue(new DialogClue("Knife Findings", getName(), "", false), 1, 0, "Kitchen Knife", null));
-        conditionClues.add(new ConditionClue(new DialogClue("Arthur and Lucian's Argument", getName(), "Dialogue (Argument of arthur and lucian)", true), 4, 0, null, "Arthur's Bloodied Body"));
+        conditionClues.add(new ConditionClue(new DialogClue("Knife Findings", getName(), "Last night Charles use this knife for something", false), 1, 0, "Kitchen Knife", null));
+        conditionClues.add(new ConditionClue(new DialogClue("Arthur and Lucian's Argument", getName(), "I accidentally overheard Arthur and Lucia in the middle of a heated argument. The tension in their voices made it impossible to ignore how serious the situation was.", true), 4, 0, null, "Arthur's Bloodied Body"));
 
         //Item logic
-        conditionItem.add(new ConditionItem(new CabinetKey(), 1, 0, null, null, "Dialog (Give Key)"));
+        conditionItem.add(new ConditionItem(new CabinetKey(), 1, 0, null, null, "Take this key to open the cabinet"));
         setDesc();
     }
 
