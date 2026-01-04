@@ -10,6 +10,6 @@ public class Kitchen extends Room{
 
     @Override
     protected String roomDesc(){
-        return "Kitchen Desc";
+        return "A surprisingly normal kitchen";
     }
 }
