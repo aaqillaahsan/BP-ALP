@@ -32,8 +32,8 @@ public class Thomas extends NPC{
         nightDialogue.add(n4);
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new GardenShedKey(), 3, 0, null, null, "You might need this key for the Garden Shed"));
-        conditionItem.add(new ConditionItem(new Hammer(), 4, 0, null, "Slightly Cracked Wall", "Dialog give hammer"));
+        conditionItem.add(new ConditionItem(new GardenShedKey(), 3, 0, null, null, "Take this key to open the garden shed"));
+        conditionItem.add(new ConditionItem(new Hammer(), 4, 0, null, "Slightly Cracked Wall", "Oh, You find a cracked wall, this hammer might help you."));
         setDesc();
     }
 
