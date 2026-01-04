@@ -4,24 +4,24 @@ public class Lucian extends NPC{
         super("Lucian", true);
 
         //Builds first night's dialogue
-        NightDialogue n1 = new NightDialogue("Default Dialogue (night 1)");
+        NightDialogue n1 = new NightDialogue("Nothing seems out of place during the early hours");
         n1.addDialogue("Dialogue 1 (Introductionn)");
         n1.addDialogue("Dialogue 2 (Explains what happened)");
         n1.addDialogue("Dialogue 3 (Mention fighting in living room");
         nightDialogue.add(n1);
 
         //Builds second night's dialogue
-        NightDialogue n2 = new NightDialogue("Default Dialogue (night 2");
+        NightDialogue n2 = new NightDialogue("The night carries a strange but undefined feeling.");
         n2.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n2);
 
         //Builds third night's dialogue
-        NightDialogue n3 = new NightDialogue("Default Dialogue (night 3)");
+        NightDialogue n3 = new NightDialogue("There is a sense that things have shifted tonight.");
         n3.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n3);
 
         //Builds fourth night's dialogue
-        NightDialogue n4 = new NightDialogue("Default Dialogue (night 4)");
+        NightDialogue n4 = new NightDialogue("The atmosphere is thick and difficult to ignore.");
         n4.addDialogue("Dialogue 1 ()");
         nightDialogue.add(n4);
 
