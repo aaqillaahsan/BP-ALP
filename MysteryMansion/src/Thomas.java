@@ -39,7 +39,7 @@ public class Thomas extends NPC{
 
     @Override
     public void setDesc(){
-        description = "description";
+        description = "The mansion’s groundskeeper, accustomed to working in isolation. Practical and guarded, he has access to tools and hidden areas, making him an uneasy presence in the investigation.";
     }
 
     @Override
