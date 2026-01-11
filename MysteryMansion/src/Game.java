@@ -53,6 +53,8 @@ public class Game {
         basement.connectRoom(mainHall);
         basement.connectRoom(hiddenRoom);
 
+        hiddenRoom.connectRoom(basement);
+
         //------------------
         mainHall.unlock();
         livingRoom.unlock();
@@ -70,14 +72,21 @@ public class Game {
         rooms.add(hiddenRoom);
 
         player.setCurrentRoom(mainHall);
-        /*player.getInventory().addItem(new BasementKey());
+        player.getInventory().addItem(new BasementKey());
         player.getInventory().addItem(new BedroomKey());
         player.getInventory().addItem(new LibraryPermission());
-        player.getInventory().addItem(new Hammer());
         player.getInventory().addItem(new BrokenWineGlass());
         player.getInventory().addItem(new BloodstainedWeight());
+        player.getInventory().addItem(new Knife());
+        player.getInventory().addItem(new WillDraft());
+        player.getInventory().addItem(new JuviaLetter());
+        player.getInventory().addItem(new GamblingLedger());
+        player.getInventory().addItem(new GardenKey());
+        player.getInventory().addItem(new GroundskeeperTool());
         player.getJournal().addEClue(new BloodyMark());
-        player.getJournal().addEClue(new ArthurCon());*/
+        player.getJournal().addEClue(new ArthurCon());
+        player.getJournal().addEClue(new NoDef());
+        player.getJournal().addEClue(new FootprintClue());
     }
 
     public void goRoom(String name){
@@ -128,6 +137,17 @@ public class Game {
         Room current = player.getCurrentRoom();
         for(NPC i: current.getNPCS()){
             if(i.getName().equalsIgnoreCase(name)){
+                if(i.hasExtraDialog()){
+                    for(extraDialog ed: i.extraDialog){
+                        if(ed.checkBody(player.getJournal())){
+                            System.out.println(i.getName() + ": ");
+                            System.out.printf("\" %s \"\n", ed.getText());
+                            i.clearExtraDialog();
+                            return;
+                        }
+                    }
+                }
+
                 DialogClue clue = i.giveClue(night, player.getInventory(), player.getJournal());
                 if(clue != null){
                     System.out.println(i.getName() + ": ");
@@ -146,6 +166,7 @@ public class Game {
                     return;
                 }
 
+
                 System.out.println(i.getName() + ": ");
                 System.out.printf("\" %s \"\n",i.Talk(night));
                 return;
@@ -157,6 +178,7 @@ public class Game {
 
     public ArrayList<String> collectEvid(NPC accused){
         ArrayList<String> accepted = new ArrayList<>();
+        boolean presented = false;
         String command ="";
         while (true) { 
             System.out.println("\nITEMS =============================");
@@ -176,6 +198,18 @@ public class Game {
             if(command.equalsIgnoreCase("END CONVICTION")) break;
             if(command.startsWith("CLUE ") || command.startsWith("ITEM ")){
                 String evidence = command.substring(5);
+                for(String i: accepted){
+                    if(i.equalsIgnoreCase(evidence)){
+                        System.out.println("You have already presented that evidence");
+                        presented = true;
+                        break;
+                    }
+                }
+                if(presented){
+                    presented = false;
+                    sc.nextLine();
+                    continue;
+                }
                 if(!player.hasEvidence(evidence)){
                     System.out.println("You do not possess that evidence.");
                     continue;
@@ -190,7 +224,7 @@ public class Game {
                 System.out.printf("\" %s \"\n",accused.respondEvid(evidence));
 
                 if(!accused.isRelevant(evidence)){
-                    System.out.println("He's right, this doesn't make sense at all");
+                    System.out.println("That's right, this doesn't make sense at all");
                     sc.nextLine();
                     continue;
                 }
@@ -614,7 +648,7 @@ public class Game {
                     System.out.println();
                     return;
                 }
-             }
+            }
             System.out.println("Unknown room");
             System.out.println();
 

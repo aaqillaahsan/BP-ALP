@@ -11,6 +11,7 @@ public abstract class NPC {
     protected ArrayList<ConditionClue> conditionClues = new ArrayList<>();
     protected ArrayList<ConditionItem> conditionItem = new ArrayList<>();
     protected String description;
+    protected ArrayList<extraDialog> extraDialog = new ArrayList<>();
 
     protected ArrayList<String> requiredEvidence = new ArrayList<>();
     protected ArrayList<EvidenceReason> accuseReason = new ArrayList<>();
@@ -82,7 +83,7 @@ public abstract class NPC {
         return "That has nothing to do with me";
     }
 
-    public boolean canConvict(ArrayList<String> Evidences){
+/*   public boolean canConvict(ArrayList<String> Evidences){
         int evicount = 0;
 
         for(String i: Evidences){
@@ -92,7 +93,7 @@ public abstract class NPC {
         }
         
         return evicount >= 3;
-    }
+    }*/
 
     public void explainEvidence(String name){
         for(EvidenceReason i: accuseReason){
@@ -100,6 +101,14 @@ public abstract class NPC {
                 System.out.println(i.getReason());
             }
         }
+    }
+
+    public boolean hasExtraDialog(){
+        return !extraDialog.isEmpty();
+    }
+
+    public void clearExtraDialog(){
+        extraDialog.clear();
     }
 
     public abstract void executionDay();

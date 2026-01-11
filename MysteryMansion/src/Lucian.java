@@ -6,32 +6,32 @@ public class Lucian extends NPC{
         //Builds first night's dialogue
         NightDialogue n1 = new NightDialogue("Nothing seems out of place during the early hours");
         n1.addDialogue("Lucian Ravenwood.\n" + "I understand this situation is… unsettling, but panic will not help anyone.");
-        n1.addDialogue("Father excused himself after dinner.\n" + "He was upset, yes—but he often was. That doesn’t mean something terrible happened.");
-        n1.addDialogue("If you’re referring to the argument, it was between Father and Uncle Charles.\n" + "I stayed out of it. Conflicts like that were beneath me.");
+        n1.addDialogue("Father excused himself after dinner.\n" + "He was upset, yes—but he often was. That doesn' mean something terrible happened.");
+        n1.addDialogue("If you're referring to the argument, it was between Father and Uncle Charles.\n" + "I stayed out of it. Conflicts like that were beneath me.");
         n1.addDialogue("I retired early that night.\n" + "I prefer rest over pointless confrontation.");
         nightDialogue.add(n1);
 
         //Builds second night's dialogue
         NightDialogue n2 = new NightDialogue("The night carries a strange but undefined feeling.");
-        n2.addDialogue("The mood has shifted.\n" + "People are starting to imagine patterns that don’t exist.");
+        n2.addDialogue("The mood has shifted.\n" + "People are starting to imagine patterns that don't exist.");
         n2.addDialogue("Inheritance rumors are exactly that—rumors.\n" + "Father changed his mind often.");
-        n2.addDialogue("He spent a lot of time writing lately.\n" + "That doesn’t mean every page is a confession.");
+        n2.addDialogue("He spent a lot of time writing lately.\n" + "That doesn't mean every page is a confession.");
         n2.addDialogue("I find it troubling how easily suspicion replaces logic.");
         nightDialogue.add(n2);
 
         //Builds third night's dialogue
         NightDialogue n3 = new NightDialogue("There is a sense that things have shifted tonight.");
-        n3.addDialogue("This investigation has gone far enough.\n" + "Now you’re talking about blood and basements.");
-        n3.addDialogue("A paperweight? Drag marks?\n" + "You’re describing brute force—not calculation.");
+        n3.addDialogue("This investigation has gone far enough.\n" + "Now you're talking about blood and basements.");
+        n3.addDialogue("A paperweight? Drag marks?\n" + "You're describing brute force—not calculation.");
         n3.addDialogue("Many people have access to the garden and lower levels.\n" + "Singling me out is convenient, not fair.");
-        n3.addDialogue("Father was difficult… but that doesn’t mean I wished him dead.");
+        n3.addDialogue("Father was difficult… but that doesn't mean I wished him dead.");
         nightDialogue.add(n3);
 
         //Builds fourth night's dialogue
         NightDialogue n4 = new NightDialogue("The atmosphere is thick and difficult to ignore.");
-        n4.addDialogue("This night feels different.\n" + "You’ve already decided, haven’t you?");
+        n4.addDialogue("This night feels different.\n" + "You've already decided, haven't you?");
         n4.addDialogue("You think you understand my family?\n" + "You think you understand him?");
-        n4.addDialogue("I won’t deny that Father and I disagreed.\n But disagreement does not equal murder.");
+        n4.addDialogue("I won't deny that Father and I disagreed.\n But disagreement does not equal murder.");
         n4.addDialogue("Be careful not to confuse suspicion with certainty.\n Once an accusation is made, it cannot be undone.");
         nightDialogue.add(n4);
 
@@ -63,31 +63,40 @@ public class Lucian extends NPC{
         //Evidence reasons
         accuseReason.add(new EvidenceReason("Locked Mansion", "There is no way an outsider can do this. So you are a suspect!"));
         accuseReason.add(new EvidenceReason("Altered Will Draft", "Your Father's will says that you were to be removed. Hence you act as a revenge"));
-        accuseReason.add(new EvidenceReason("Arthur's Journal", "In this journal, your Father wrote blablablabla"));
+        accuseReason.add(new EvidenceReason("Arthur's Journal","Arthur wrote that he feared confronting you after the academy incident.\nThat fear explains your motive and why he never defended himself."));
+        accuseReason.add(new EvidenceReason("Footprints near basement window", "The footprints matched your description, so you are a suspect!"));
+        accuseReason.add(new EvidenceReason("Blood-Stained Paperweight", "This is the weapon found in the basement. It used to belong in Arthur's Bedroom where you have the key to"));
+        accuseReason.add(new EvidenceReason("Bloody Drag Marks", "You dragged his body to wherever you hid him in the basement"));
+        accuseReason.add(new EvidenceReason("Arthur's Bloodied Body", "His body was found bloodied hidden in the basement. You did this! "));
+        accuseReason.add(new EvidenceReason("No Defensive Wound", "His wound signify no resistance. Which means you are a suspect"));
+        accuseReason.add(new EvidenceReason("Arthur and Lucian's Argument", "The arguments signify your motive of why you might be doing this to Arthur"));
 
         //Item Logic
-        conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "This key opens Arthur’s bedroom use it wisely."));
+        conditionItem.add(new ConditionItem(new BedroomKey(), 2, 0, null, null, "This key opens Arthur's bedroom use it wisely."));
+
+        //Shocked dialog
+        extraDialog.add(new extraDialog("Lucian freezes when he sees the body.\n…So it's true.\nHe exhales slowly, steadying himself.\nFather… you didn't deserve this.\nThis shouldn't have happened.\nNot like this."));
         setDesc();
     }
 
     @Override
     public void setDesc(){
-        description = "Arthur’s eldest son. Calm, intelligent, and carefully controlled, Lucian presents himself as rational and cooperative, rarely revealing his true emotions.";
+        description = "Arthur's eldest son. Calm, intelligent, and carefully controlled, Lucian presents himself as rational and cooperative, rarely revealing his true emotions.";
     }
 
     @Override
     public void executionDay(){
         String [] dialog = {
             "Lucian stands perfectly still. No restraints are needed. His calm is deliberate—but strained.",
-            "So… you’ve decided.",
+            "So… you've decided.",
             "I warned you about certainty.\n About mistaking patterns for truth.\n But here we are.",
-            "Do you know how exhausting it is—\n watching everyone stumble toward the answer,\n convinced they’re being clever?",
+            "Do you know how exhausting it is—\n watching everyone stumble toward the answer,\n convinced they're being clever?",
             "Father loved control.\n He called it order.\n What he really meant was obedience.",
             "He was going to erase me.\n Not just from the will—\n from the family.\n From history.",
-            "I didn’t plan to kill him.\n I planned to make him listen.\n Just once.",
+            "I didn't plan to kill him.\n I planned to make him listen.\n Just once.",
             "But he never did.\n He turned his back.\n And in that moment… everything became very simple.",
             "No struggle.\n No fear.\n He trusted me.",
-            "You were all so eager to blame the loud ones.\n The desperate ones.\n The ones who couldn’t hide what they felt.",
+            "You were all so eager to blame the loud ones.\n The desperate ones.\n The ones who couldn't hide what they felt.",
             "I only needed patience.\n Silence does the rest."
         };
         for(String i: dialog){

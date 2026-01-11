@@ -22,7 +22,7 @@ public class Edmund extends NPC{
         NightDialogue n3 = new NightDialogue("Something feels different, even if it cannot be named.");
         n3.addDialogue("At this point, concealment is no longer possible.\n" + "The truth requires access.");
         n3.addDialogue("This key opens the garden door.\n" + "I had restricted the area earlier to prevent unnecessary disturbance.");
-        n3.addDialogue("And this key grants access to the basement stairs.\n" + "It was sealed at Mr. Arthur’s explicit request.");
+        n3.addDialogue("And this key grants access to the basement stairs.\n" + "It was sealed at Mr. Arthur's explicit request.");
         n3.addDialogue("Proceed carefully.\n" + "The basement holds more than storage.");
         nightDialogue.add(n3);
 
@@ -34,12 +34,41 @@ public class Edmund extends NPC{
         n4.addDialogue("When you are ready to speak your accusation,\n" + "ensure it is supported by fact—not assumption.");
         nightDialogue.add(n4);
 
+        //Req/Connected evidence
+        requiredEvidence.add("Locked Mansion");
+        requiredEvidence.add("Arthur's Journal");
+        requiredEvidence.add("Footprints near basement window");
+        requiredEvidence.add("Bloody Drag Marks");
+        requiredEvidence.add("Arthur's Bloodied Body");
+
+        //default response
+        denialReactions.add("I understand why suspicion falls on me.\nBut duty and guilt are not the same.");
+
+        //Evidence responses
+        evidenceResponses.add(new EvidenceResponse("Locked Mansion","The mansion was sealed to preserve safety and truth.\nI did not benefit from locking anyone inside."));
+        evidenceResponses.add(new EvidenceResponse("Arthur's Journal","Mr. Arthur wrote many things in private.\nNone of them accuse me of harm."));
+        evidenceResponses.add(new EvidenceResponse("Footprints near basement window","The garden and basement were accessed by multiple residents.\nObservation does not equal responsibility."));
+        evidenceResponses.add(new EvidenceResponse("Bloody Drag Marks","Those marks indicate concealment, not service.\nI maintain the house—I do not defile it."));
+        evidenceResponses.add(new EvidenceResponse("Arthur's Bloodied Body","The manner of death was personal.\nStaff do not receive that level of trust."));
+
+        //Evidence reasons
+        accuseReason.add(new EvidenceReason("Locked Mansion","You sealed the mansion and controlled all exits.\nThat gave you authority over the crime scene."));
+        accuseReason.add(new EvidenceReason("Arthur's Journal","Arthur wrote about fear and secrecy.\nAs his closest staff member, you were privy to private matters."));
+        accuseReason.add(new EvidenceReason("Footprints near basement window","You had routine access to the garden and basement.\nYou could move without drawing attention."));
+        accuseReason.add(new EvidenceReason("Bloody Drag Marks","The body was moved deliberately through service paths.\nYou know the mansion's hidden routes."));
+        accuseReason.add(new EvidenceReason("Arthur's Bloodied Body","Arthur was killed quietly without resistance.\nSomeone he trusted enough not to question could have done this."));
+
+
         //Clue Logic
         conditionClues.add(new ConditionClue(new DialogClue("Locked Mansion",getName(), "Ever since Arthur went missing, the mansion has been kept locked", true), 1, 0, null,null));
 
         //Item Logic
         conditionItem.add(new ConditionItem(new GardenKey(), 3, 0, null, null, "Take this key to open the garden"));
         conditionItem.add(new ConditionItem(new BasementKey(), 3, 0, null, null, "Take this key to open the basement"));
+        
+        //Shocked dialog
+        extraDialog.add(new extraDialog("Edmund closes his eyes briefly.\nThen it is confirmed.\nHe straightens his posture.\nI regret that order failed him.\nThis house will not hide the truth."));
+
         setDesc();
     }
 
